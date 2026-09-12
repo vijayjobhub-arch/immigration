@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BridgeBuilder AI (సేతు) — Empowering Immigrant Families</title>
+  <meta name="description" content="AI tools tailored to make everyday life measurably easier for immigrant families in America. Built for the APTA Bridge Builders Hackathon." />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#0B132B',
+              dark: '#1C2541',
+              gold: '#F59E0B',
+              goldDark: '#D97706',
+              emerald: '#10B981',
+              slate: '#334155'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col antialiased selection:bg-amber-200 selection:text-amber-900">
+
+  <!-- ======================================================================= -->
+  <!-- TOP NAVIGATION HEADER -->
+  <!-- ======================================================================= -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-navy to-brand-dark flex items-center justify-center text-amber-400 font-extrabold text-xl shadow-md">
+          <span>సే</span>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-extrabold text-lg sm:text-xl text-slate-900 tracking-tight">BridgeBuilder AI</span>
+            <span class="font-telugu text-sm text-amber-600 font-bold hidden sm:inline">(సేతు / Setu)</span>
+          </div>
+          <p class="text-[11px] text-slate-500 font-medium leading-none">APTA Bridge Builders Hackathon Edition</p>
+        </div>
+      </div>
+
+      <!-- Right Actions & Status -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <div id="apiKeyStatusBadge" class="hidden lg:block">
+          <!-- Dynamically populated -->
+        </div>
+
+        <button id="btnOpenRoadmap" class="btn-tap inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-500 hover:bg-amber-400 text-slate-950 border border-amber-600 shadow-sm">
+          <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+          <span>8-Track Framework</span>
+        </button>
+
+        <button id="btnOpenApiKey" class="btn-tap inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300">
+          <i data-lucide="settings" class="w-3.5 h-3.5"></i>
+          <span>API Settings</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Tab Navigation Bar -->
+    <div class="bg-slate-100/80 border-t border-slate-200 px-4 sm:px-6 lg:px-8">
+      <nav class="max-w-7xl mx-auto flex space-x-1 sm:space-x-8 overflow-x-auto py-1">
+        
+        <button data-tab="arogya" class="nav-tab active-tab text-amber-600 border-amber-500 inline-flex items-center gap-2 py-2.5 px-3 border-b-2 font-bold text-sm whitespace-nowrap transition-colors">
+          <i data-lucide="stethoscope" class="w-4 h-4"></i>
+          <span>1. ArogyaCard (Doctor Visit)</span>
+          <span class="bg-emerald-100 text-emerald-800 text-[10px] font-extrabold px-1.5 py-0.5 rounded-full uppercase">Top Pick</span>
+        </button>
+
+        <button data-tab="edubridge" class="nav-tab text-slate-600 border-transparent inline-flex items-center gap-2 py-2.5 px-3 border-b-2 font-bold text-sm whitespace-nowrap transition-colors hover:text-slate-900">
+          <i data-lucide="calendar" class="w-4 h-4"></i>
+          <span>2. EduBridge (School Calendar)</span>
+          <span class="bg-amber-100 text-amber-800 text-[10px] font-extrabold px-1.5 py-0.5 rounded-full uppercase">1-Click .ics</span>
+        </button>
+
+        <button data-tab="decodr" class="nav-tab text-slate-600 border-transparent inline-flex items-center gap-2 py-2.5 px-3 border-b-2 font-bold text-sm whitespace-nowrap transition-colors hover:text-slate-900">
+          <i data-lucide="file-text" class="w-4 h-4"></i>
+          <span>3. Decodr (Lease & Notices)</span>
+        </button>
+
+        <button data-tab="dmv" class="nav-tab text-slate-600 border-transparent inline-flex items-center gap-2 py-2.5 px-3 border-b-2 font-bold text-sm whitespace-nowrap transition-colors hover:text-slate-900">
+          <i data-lucide="car" class="w-4 h-4"></i>
+          <span>4. DMVReady (License Checklist)</span>
+        </button>
+
+        <button data-tab="safeaid" class="nav-tab text-slate-600 border-transparent inline-flex items-center gap-2 py-2.5 px-3 border-b-2 font-bold text-sm whitespace-nowrap transition-colors hover:text-slate-900">
+          <i data-lucide="life-buoy" class="w-4 h-4"></i>
+          <span>5. SafeAid (Community & Food)</span>
+          <span class="bg-teal-100 text-teal-800 text-[10px] font-extrabold px-1.5 py-0.5 rounded-full uppercase">No SSN Safe</span>
+        </button>
+
+        <button data-tab="bavabavam" class="nav-tab text-slate-600 border-transparent inline-flex items-center gap-2 py-2.5 px-3 border-b-2 font-bold text-sm whitespace-nowrap transition-colors hover:text-slate-900">
+          <i data-lucide="message-circle" class="w-4 h-4"></i>
+          <span>6. BavaBavam (Cross-Gen Chat)</span>
+          <span class="bg-indigo-100 text-indigo-800 text-[10px] font-extrabold px-1.5 py-0.5 rounded-full uppercase">Emotion Bridge</span>
+        </button>
+
+        <button data-tab="katha" class="nav-tab text-slate-600 border-transparent inline-flex items-center gap-2 py-2.5 px-3 border-b-2 font-bold text-sm whitespace-nowrap transition-colors hover:text-slate-900">
+          <i data-lucide="book-heart" class="w-4 h-4"></i>
+          <span>7. Katha (Stories & Recipes)</span>
+          <span class="bg-rose-100 text-rose-800 text-[10px] font-extrabold px-1.5 py-0.5 rounded-full uppercase">Heritage</span>
+        </button>
+
+        <button data-tab="enrollment" class="nav-tab text-slate-600 border-transparent inline-flex items-center gap-2 py-2.5 px-3 border-b-2 font-bold text-sm whitespace-nowrap transition-colors hover:text-slate-900">
+          <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+          <span>8. Enrollment & Forms</span>
+        </button>
+
+        <button data-tab="transit" class="nav-tab text-slate-600 border-transparent inline-flex items-center gap-2 py-2.5 px-3 border-b-2 font-bold text-sm whitespace-nowrap transition-colors hover:text-slate-900">
+          <i data-lucide="bus" class="w-4 h-4"></i>
+          <span>9. Transit & Doctor Q&A</span>
+        </button>
+
+        <button data-tab="business" class="nav-tab text-slate-600 border-transparent inline-flex items-center gap-2 py-2.5 px-3 border-b-2 font-bold text-sm whitespace-nowrap transition-colors hover:text-slate-900">
+          <i data-lucide="store" class="w-4 h-4"></i>
+          <span>10. Small Business Hub</span>
+        </button>
+
+      </nav>
+    </div>
+  </header>
+
+  <!-- ======================================================================= -->
+  <!-- MAIN CONTAINER -->
+  <!-- ======================================================================= -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+    <!-- ===================================================================== -->
+    <!-- TAB 1: AROGYACARD (Doctor Visit Card Generator) -->
+    <!-- ===================================================================== -->
+    <section id="panel-arogya" class="tab-panel space-y-6">
+      
+      <!-- Module Banner & Judge Preset Bar -->
+      <div class="bg-gradient-to-r from-brand-navy to-slate-800 text-white rounded-2xl p-6 shadow-md border border-slate-700">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 uppercase tracking-wide">Language Barriers at Doctor Visits</span>
+              <span class="text-xs text-slate-300">• APTA Problem #3</span>
+            </div>
+            <h2 class="text-2xl font-extrabold tracking-tight">ArogyaCard: 1-Tap Bilingual Doctor Visit Card</h2>
+            <p class="text-sm text-slate-300 font-telugu max-w-2xl">
+              డాక్టర్ లేదా అత్యవసర క్లినిక్‌కి వెళ్ళినప్పుడు తెలుగులో లక్షణాలు ఎంచుకోండి — నర్సు మరియు డాక్టర్‌కు సులభంగా అర్థమయ్యే మెడికల్ సమ్మరీని తక్షణమే తయారుచేస్తుంది.
+            </p>
+          </div>
+
+          <!-- Quick 1-Click Demo Preset for Judges -->
+          <div class="shrink-0 bg-white/10 p-3 rounded-xl border border-white/20 backdrop-blur-sm space-y-2">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-amber-300 block">⚡ Judge Live Test</span>
+            <button id="btnPresetElderlyPain" class="btn-tap w-full inline-flex items-center justify-center gap-2 px-3 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-lg text-xs shadow">
+              <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i>
+              <span>Test: Lakshmi Amma (Abdominal Pain)</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Layout: 2 Columns (Form on left, Result on right) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+        <!-- Left Column: Input Form (5 Cols) -->
+        <div class="lg:col-span-5 space-y-5 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+          <h3 class="font-extrabold text-slate-900 text-lg flex items-center gap-2 border-b border-slate-100 pb-3">
+            <i data-lucide="user-check" class="w-5 h-5 text-amber-500"></i>
+            <span>Patient Symptoms (లక్షణాలు)</span>
+          </h3>
+
+          <!-- Symptom Category Chips -->
+          <div class="space-y-2">
+            <label class="text-xs font-bold uppercase text-slate-500 tracking-wider">Select Primary Symptom</label>
+            <div class="grid grid-cols-2 gap-2" id="symptomChipsContainer">
+              <button type="button" data-symptom="Stomach / Abdominal Pain" data-te="కడుపు నొప్పి / మంట" class="symptom-chip btn-tap p-2.5 rounded-xl border border-amber-600 bg-amber-600 text-white font-bold text-xs text-left shadow-sm">
+                <span class="block">Stomach / Abdomen</span>
+                <span class="font-telugu text-[11px] opacity-90">కడుపు నొప్పి / మంట</span>
+              </button>
+              <button type="button" data-symptom="Chest Discomfort & Pressure" data-te="ఛాతీలో నొప్పి లేదా ఒత్తిడి" class="symptom-chip btn-tap p-2.5 rounded-xl border border-slate-200 bg-white text-slate-700 font-bold text-xs text-left hover:border-slate-300">
+                <span class="block">Chest Discomfort</span>
+                <span class="font-telugu text-[11px] opacity-75">ఛాతీలో నొప్పి</span>
+              </button>
+              <button type="button" data-symptom="Dizziness & Weakness" data-te="తల తిరగడం / బలహీనత" class="symptom-chip btn-tap p-2.5 rounded-xl border border-slate-200 bg-white text-slate-700 font-bold text-xs text-left hover:border-slate-300">
+                <span class="block">Dizziness & Vertigo</span>
+                <span class="font-telugu text-[11px] opacity-75">తల తిరగడం</span>
+              </button>
+              <button type="button" data-symptom="Fever, Chills & Body Pain" data-te="తీవ్రమైన జ్వరం / చలి" class="symptom-chip btn-tap p-2.5 rounded-xl border border-slate-200 bg-white text-slate-700 font-bold text-xs text-left hover:border-slate-300">
+                <span class="block">Fever & Chills</span>
+                <span class="font-telugu text-[11px] opacity-75">జ్వరం / చలి</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Pain Scale Slider -->
+          <div class="space-y-2 bg-slate-50 p-4 rounded-xl border border-slate-200">
+            <div class="flex items-center justify-between">
+              <label class="text-xs font-bold uppercase text-slate-600 tracking-wider">Pain Intensity (నొప్పి తీవ్రత)</label>
+              <span id="painDisplay" class="text-2xl font-black text-rose-600">8</span>
+            </div>
+            <input id="painSlider" type="range" min="1" max="10" value="8" class="w-full accent-amber-500 h-2 bg-slate-200 rounded-lg cursor-pointer" />
+            <div class="flex justify-between text-[10px] font-bold text-slate-400">
+              <span>1 (Mild)</span>
+              <span>5 (Moderate)</span>
+              <span>10 (Worst Possible)</span>
+            </div>
+            <p id="painLabel" class="text-xs font-telugu text-slate-600 font-medium mt-1">తీవ్రమైన భరించలేని నొప్పి</p>
+          </div>
+
+          <!-- Pain Type & Duration -->
+          <div class="grid grid-cols-2 gap-3">
+            <div class="space-y-1">
+              <label class="text-xs font-bold text-slate-600">Pain Type</label>
+              <select id="painTypeSelect" name="painType" class="w-full text-xs font-medium bg-slate-50 border border-slate-200 rounded-lg p-2 focus:ring-2 focus:ring-amber-500">
+                <option value="Burning / Acidity">మంటగా ఉంది (Burning)</option>
+                <option value="Sharp Stabbing">పోట్లు పొడుస్తున్నట్లు (Sharp)</option>
+                <option value="Dull Constant Ache">నిరంతర మందకొడి నొప్పి (Dull)</option>
+                <option value="Throbbing / Pulsing">గుండె దడలా కొట్టుకోవడం (Throbbing)</option>
+              </select>
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-bold text-slate-600">Duration (ఎప్పటి నుండి?)</label>
+              <input id="symptomDuration" type="text" value="2 days (గత రెండు రోజుల నుండి)" class="w-full text-xs font-medium bg-slate-50 border border-slate-200 rounded-lg p-2 focus:ring-2 focus:ring-amber-500" />
+            </div>
+          </div>
+
+          <!-- Existing Conditions & Medications -->
+          <div class="space-y-3">
+            <div class="space-y-1">
+              <label class="text-xs font-bold text-slate-600">Current Medications (ప్రస్తుతం వాడుతున్న మందులు)</label>
+              <input id="currentMedications" type="text" value="Metformin 500mg, Amlodipine 5mg" class="w-full text-xs bg-slate-50 border border-slate-200 rounded-lg p-2 focus:ring-2 focus:ring-amber-500" placeholder="e.g. BP pills, Insulin" />
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-bold text-slate-600">Existing Conditions (ఇతర అనారోగ్య సమస్యలు)</label>
+              <input id="medicalConditions" type="text" value="Type 2 Diabetes, High Blood Pressure" class="w-full text-xs bg-slate-50 border border-slate-200 rounded-lg p-2 focus:ring-2 focus:ring-amber-500" placeholder="e.g. Diabetes, Asthma" />
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button id="btnGenerateDoctorCard" class="btn-tap w-full py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-sm shadow-md flex items-center justify-center gap-2">
+            <i data-lucide="sparkles" class="w-4 h-4"></i>
+            <span>Generate Doctor Visit Card</span>
+          </button>
+
+        </div>
+
+        <!-- Right Column: Clinical Intake Card Output (7 Cols) -->
+        <div class="lg:col-span-7">
+          
+          <!-- Loading State -->
+          <div id="doctorCardLoading" class="hidden h-full min-h-[420px] bg-white rounded-2xl border border-slate-200 flex flex-col items-center justify-center p-8 text-center space-y-4">
+            <div class="w-12 h-12 border-4 border-amber-500 border-t-transparent rounded-full animate-spin"></div>
+            <div>
+              <h4 class="font-bold text-slate-800 text-base">Gemini Clinical Engine Processing...</h4>
+              <p class="text-xs text-slate-500 mt-1 font-telugu">వైద్య వివరణను నర్సుల ప్రామాణిక భాషలోకి అనువదిస్తోంది...</p>
+            </div>
+          </div>
+
+          <!-- Empty State Placeholder -->
+          <div id="doctorCardPlaceholder" class="h-full min-h-[420px] bg-white rounded-2xl border-2 border-dashed border-slate-200 flex flex-col items-center justify-center p-8 text-center space-y-3">
+            <div class="w-16 h-16 rounded-full bg-amber-50 flex items-center justify-center text-amber-600">
+              <i data-lucide="clipboard-plus" class="w-8 h-8"></i>
+            </div>
+            <h4 class="font-bold text-slate-800 text-lg">No Medical Card Generated Yet</h4>
+            <p class="text-xs text-slate-500 max-w-sm">
+              Select symptoms on the left and click "Generate", or tap the <span class="font-bold text-amber-700">"Test: Lakshmi Amma"</span> preset button at the top.
+            </p>
+          </div>
+
+          <!-- Generated Clinical Card Result -->
+          <div id="doctorCardResult" class="hidden space-y-4">
+            
+            <div class="printable-card bg-white rounded-2xl border border-slate-200 shadow-md p-6 space-y-5">
+              
+              <!-- Card Header -->
+              <div class="print-header flex items-start justify-between border-b border-slate-100 pb-4">
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span class="px-2.5 py-0.5 rounded-full text-xs font-black uppercase bg-rose-100 text-rose-800 border border-rose-200">
+                      Emergency Clinical Triage Intake
+                    </span>
+                    <span class="text-xs text-slate-400 font-medium">Bilingual Intake Protocol</span>
+                  </div>
+                  <h3 id="cardChiefComplaint" class="font-black text-xl text-slate-900 mt-1.5">
+                    Acute Epigastric Burning Pain with Dizziness
+                  </h3>
+                </div>
+                <div class="text-right shrink-0">
+                  <span class="text-[11px] font-bold text-slate-400 block uppercase">Primary Language</span>
+                  <span class="text-xs font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">Telugu (తెలుగు)</span>
+                </div>
+              </div>
+
+              <!-- HPI Nurse Summary Box -->
+              <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
+                <div class="flex items-center justify-between">
+                  <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center gap-1.5">
+                    <i data-lucide="file-check" class="w-4 h-4 text-emerald-600"></i>
+                    <span>Clinical Summary for Triage Nurse / MD</span>
+                  </h4>
+                  <button id="btnListenEnglish" class="text-xs font-semibold text-blue-600 hover:text-blue-800 inline-flex items-center gap-1 no-print">
+                    <i data-lucide="volume-2" class="w-3.5 h-3.5"></i> Listen (EN)
+                  </button>
+                </div>
+                <p id="cardHpiSummary" class="text-xs text-slate-800 leading-relaxed font-medium">
+                  Patient presents with a 48-hour history of acute, progressive epigastric burning pain rated 8/10. Symptoms exacerbate postprandially. Accompanied by episodic dizziness and nausea. Non-English speaking (primary language: Telugu). History positive for hypertension and Type 2 diabetes.
+                </p>
+              </div>
+
+              <!-- Metrics Grid (Onset, Severity, Vitals) -->
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <div class="bg-white p-3 rounded-xl border border-slate-200">
+                  <span class="text-[10px] font-bold text-slate-400 uppercase block">Onset & Timeline</span>
+                  <span id="cardOnset" class="text-xs font-bold text-slate-900 mt-0.5 block">48 hours</span>
+                </div>
+                <div class="bg-white p-3 rounded-xl border border-slate-200">
+                  <span class="text-[10px] font-bold text-slate-400 uppercase block">Pain Severity</span>
+                  <span id="cardSeverity" class="text-xs font-bold text-rose-600 mt-0.5 block">8/10 (Burning)</span>
+                </div>
+                <div class="bg-white p-3 rounded-xl border border-slate-200 col-span-2 sm:col-span-1">
+                  <span class="text-[10px] font-bold text-slate-400 uppercase block">Urgency Status</span>
+                  <span class="text-xs font-bold text-amber-600 mt-0.5 block">Priority Triage</span>
+                </div>
+              </div>
+
+              <!-- Current Medications -->
+              <div class="space-y-1.5">
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Reported Current Medications</span>
+                <div id="cardMedsList" class="flex flex-wrap">
+                  <!-- Populated via JS -->
+                </div>
+              </div>
+
+              <!-- Nurse Direct Instructions -->
+              <div class="bg-amber-50/70 p-3 rounded-xl border border-amber-200 space-y-1">
+                <span class="text-[11px] font-bold text-amber-900 flex items-center gap-1">
+                  <i data-lucide="alert-circle" class="w-3.5 h-3.5 text-amber-600"></i>
+                  <span>Triage Provider Recommendations:</span>
+                </span>
+                <p id="cardNurseNotes" class="text-xs text-amber-900 font-medium">
+                  Check orthostatic vitals; blood glucose check recommended; evaluate for acute gastritis vs. biliary colic.
+                </p>
+              </div>
+
+              <!-- Patient Telugu Confirmation Box -->
+              <div class="bg-blue-50/60 p-4 rounded-xl border border-blue-100 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-bold text-blue-900 font-telugu">రోగి నిర్ధారణ (Patient Telugu Explanation)</span>
+                  <button id="btnListenTelugu" class="text-xs font-semibold text-blue-700 hover:text-blue-900 inline-flex items-center gap-1 no-print">
+                    <i data-lucide="volume-2" class="w-3.5 h-3.5"></i> తెలుగులో వినండి
+                  </button>
+                </div>
+                <p id="cardTeluguSummary" class="text-xs text-slate-700 font-telugu leading-relaxed">
+                  ఈ కార్డు డాక్టర్‌కు మీ పరిస్థితిని తెలియజేస్తుంది: మీకు గత 2 రోజుల నుండి తీవ్రమైన కడుపు మంట (నొప్పి స్థాయి 8/10), తలతిరగడం మరియు వికారం ఉన్నాయి.
+                </p>
+              </div>
+
+            </div>
+
+            <!-- Action Buttons for Live Presentation -->
+            <div class="flex flex-wrap items-center gap-3 no-print">
+              <button id="btnShowNurseModal" class="btn-tap flex-1 min-w-[200px] py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-sm shadow-md flex items-center justify-center gap-2">
+                <i data-lucide="maximize-2" class="w-4 h-4"></i>
+                <span>"Show to Nurse" Fullscreen Mode</span>
+              </button>
+
+              <button id="btnPrintDoctorCard" class="btn-tap py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-sm shadow-md flex items-center gap-2">
+                <i data-lucide="printer" class="w-4 h-4"></i>
+                <span>Print Physical Card</span>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 2: EDUBRIDGE (School Flyer to Calendar) -->
+    <!-- ===================================================================== -->
+    <section id="panel-edubridge" class="tab-panel hidden space-y-6">
+      
+      <!-- Banner -->
+      <div class="bg-gradient-to-r from-brand-navy to-slate-800 text-white rounded-2xl p-6 shadow-md border border-slate-700">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 uppercase tracking-wide">School Schedules & Enrollment</span>
+              <span class="text-xs text-slate-300">• APTA Problem #1</span>
+            </div>
+            <h2 class="text-2xl font-extrabold tracking-tight">EduBridge: School Flyer to 1-Click Calendar</h2>
+            <p class="text-sm text-slate-300 font-telugu max-w-2xl">
+              పాఠశాల ఫ్లైయర్లను మరియు నోటీసులను పేస్ట్ చేయండి — తేదీలు, సెలవులు, 'Early Release' వివరణలతో సహా మీ Google/Apple క్యాలెండర్‌లోకి ఒకే క్లిక్‌తో సేవ్ చేసుకోండి.
+            </p>
+          </div>
+
+          <!-- Quick 1-Click Demo Preset for Judges -->
+          <div class="shrink-0 bg-white/10 p-3 rounded-xl border border-white/20 backdrop-blur-sm space-y-2">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-amber-300 block">⚡ Judge Live Test</span>
+            <button id="btnPresetFriscoISD" class="btn-tap w-full inline-flex items-center justify-center gap-2 px-3 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-lg text-xs shadow">
+              <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i>
+              <span>Test: Frisco ISD Fall Newsletter</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Layout: Input on left, Calendar Events on right -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+        <!-- Input Box (5 cols) -->
+        <div class="lg:col-span-5 space-y-4 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <h3 class="font-extrabold text-slate-900 text-base flex items-center gap-2">
+              <i data-lucide="file-up" class="w-5 h-5 text-amber-500"></i>
+              <span>School Flyer / Newsletter Text</span>
+            </h3>
+            <span class="text-[11px] text-slate-400 font-medium">Text or OCR paste</span>
+          </div>
+
+          <p class="text-xs text-slate-500 leading-relaxed">
+            Paste any confusing school newsletter text or click the preset above to simulate an image OCR upload:
+          </p>
+
+          <textarea id="schoolFlyerInput" rows="12" class="w-full text-xs font-mono p-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 leading-relaxed" placeholder="Paste school announcement, email newsletter, or flyer text here..."></textarea>
+
+          <button id="btnExtractSchoolSchedule" class="btn-tap w-full py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-sm shadow-md flex items-center justify-center gap-2">
+            <i data-lucide="calendar-plus" class="w-4 h-4"></i>
+            <span>Extract Calendar Events & Telugu Guide</span>
+          </button>
+        </div>
+
+        <!-- Extracted Events & .ics Downloader (7 cols) -->
+        <div class="lg:col-span-7 space-y-4">
+          
+          <!-- Loading state -->
+          <div id="schoolScheduleLoading" class="hidden h-full min-h-[380px] bg-white rounded-2xl border border-slate-200 flex flex-col items-center justify-center p-8 text-center space-y-3">
+            <div class="w-12 h-12 border-4 border-amber-500 border-t-transparent rounded-full animate-spin"></div>
+            <h4 class="font-bold text-slate-800 text-base">Parsing School Deadlines & Translating...</h4>
+            <p class="text-xs text-slate-500 font-telugu">తేదీలు మరియు క్యాలెండర్ ఈవెంట్లను తయారుచేస్తోంది...</p>
+          </div>
+
+          <!-- Placeholder -->
+          <div id="schoolSchedulePlaceholder" class="h-full min-h-[380px] bg-white rounded-2xl border-2 border-dashed border-slate-200 flex flex-col items-center justify-center p-8 text-center space-y-3">
+            <div class="w-16 h-16 rounded-full bg-amber-50 flex items-center justify-center text-amber-600">
+              <i data-lucide="calendar" class="w-8 h-8"></i>
+            </div>
+            <h4 class="font-bold text-slate-800 text-lg">No Schedule Extracted Yet</h4>
+            <p class="text-xs text-slate-500 max-w-sm">
+              Paste school flyer text or click <span class="font-bold text-amber-700">"Test: Frisco ISD"</span> to view interactive deadlines and download the .ics file.
+            </p>
+          </div>
+
+          <!-- Schedule Result -->
+          <div id="schoolScheduleResult" class="hidden space-y-4">
+            
+            <!-- Result Header with Download All -->
+            <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <span class="text-[11px] font-bold uppercase text-amber-600 tracking-wider">Parsed Campus</span>
+                <h3 id="schoolNameDisplay" class="font-black text-lg text-slate-900">Frisco ISD - Centennial Elementary</h3>
+                <p id="schoolSummaryDisplay" class="text-xs text-slate-600 font-telugu mt-0.5">ఈ నెల పాఠశాల ముఖ్యమైన తేదీలు</p>
+              </div>
+
+              <!-- 1-Click .ICS Download Button -->
+              <button id="btnDownloadAllIcs" class="btn-tap px-4 py-2.5 rounded-xl bg-brand-navy hover:bg-slate-800 text-white font-extrabold text-xs shadow-md flex items-center justify-center gap-2 shrink-0">
+                <i data-lucide="download" class="w-4 h-4 text-amber-400"></i>
+                <span>Download All as .ICS</span>
+              </button>
+            </div>
+
+            <!-- Events List Container -->
+            <div id="eventsListContainer" class="space-y-3">
+              <!-- Dynamically populated -->
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 3: DECODR (Legal & Lease Form Demystifier) -->
+    <!-- ===================================================================== -->
+    <section id="panel-decodr" class="tab-panel hidden space-y-6">
+      
+      <!-- Banner -->
+      <div class="bg-gradient-to-r from-brand-navy to-slate-800 text-white rounded-2xl p-6 shadow-md border border-slate-700">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/40 uppercase tracking-wide">Forms & Official Documents</span>
+              <span class="text-xs text-slate-300">• APTA Problem #2</span>
+            </div>
+            <h2 class="text-2xl font-extrabold tracking-tight">Decodr: 3-Point Immigrant Notice Simplifier</h2>
+            <p class="text-sm text-slate-300 font-telugu max-w-2xl">
+              అపార్ట్‌మెంట్ లీజులు, పన్ను పత్రాలు మరియు ప్రభుత్వ నోటీసుల్లోని న్యాయపరమైన భాషను సాధారణ తెలుగులోకి మరియు 3 సులభమైన కార్డులుగా విభజిస్తుంది.
+            </p>
+          </div>
+
+          <!-- Quick 1-Click Demo Preset for Judges -->
+          <div class="shrink-0 bg-white/10 p-3 rounded-xl border border-white/20 backdrop-blur-sm space-y-2">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-amber-300 block">⚡ Judge Live Test</span>
+            <button id="btnPresetLeaseClause" class="btn-tap w-full inline-flex items-center justify-center gap-2 px-3 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-lg text-xs shadow">
+              <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i>
+              <span>Test: $500 Penalty Lease Clause</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Layout -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+        <!-- Left Input (5 cols) -->
+        <div class="lg:col-span-5 space-y-4 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+          <h3 class="font-extrabold text-slate-900 text-base flex items-center gap-2 border-b border-slate-100 pb-3">
+            <i data-lucide="scale" class="w-5 h-5 text-amber-500"></i>
+            <span>Paste Legal Clause or Letter</span>
+          </h3>
+
+          <textarea id="legalClauseInput" rows="11" class="w-full text-xs font-mono p-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 leading-relaxed" placeholder="Paste intimidating lease contract clause, HOA letter, or government notice text here..."></textarea>
+
+          <button id="btnDecodeNotice" class="btn-tap w-full py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-sm shadow-md flex items-center justify-center gap-2">
+            <i data-lucide="shield-alert" class="w-4 h-4"></i>
+            <span>Decode Notice into Plain Telugu</span>
+          </button>
+        </div>
+
+        <!-- Right Output (7 cols) -->
+        <div class="lg:col-span-7 space-y-4">
+          
+          <!-- Loading -->
+          <div id="decodrLoading" class="hidden h-full min-h-[380px] bg-white rounded-2xl border border-slate-200 flex flex-col items-center justify-center p-8 text-center space-y-3">
+            <div class="w-12 h-12 border-4 border-amber-500 border-t-transparent rounded-full animate-spin"></div>
+            <h4 class="font-bold text-slate-800 text-base">Analyzing Legal Clauses & Penalties...</h4>
+            <p class="text-xs text-slate-500 font-telugu">జరిమానాలు మరియు స్పష్టమైన చర్యలను లెక్కిస్తోంది...</p>
+          </div>
+
+          <!-- Placeholder -->
+          <div id="decodrPlaceholder" class="h-full min-h-[380px] bg-white rounded-2xl border-2 border-dashed border-slate-200 flex flex-col items-center justify-center p-8 text-center space-y-3">
+            <div class="w-16 h-16 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
+              <i data-lucide="file-text" class="w-8 h-8"></i>
+            </div>
+            <h4 class="font-bold text-slate-800 text-lg">No Document Decoded Yet</h4>
+            <p class="text-xs text-slate-500 max-w-sm">
+              Paste official notice text or tap <span class="font-bold text-amber-700">"Test: $500 Penalty Lease Clause"</span> to see the 3-card plain-Telugu breakdown.
+            </p>
+          </div>
+
+          <!-- Results -->
+          <div id="decodrResult" class="hidden space-y-4">
+            
+            <!-- 3-Card Decision Output -->
+            <div class="grid grid-cols-1 gap-4">
+              
+              <!-- Card 1: Plain Meaning -->
+              <div class="p-5 rounded-2xl border border-blue-200 bg-blue-50/40 space-y-2.5">
+                <div class="flex items-center justify-between">
+                  <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-blue-800 flex items-center gap-1.5">
+                    <i data-lucide="info" class="w-3.5 h-3.5"></i> Card 1: What This Actually Means
+                  </span>
+                  <button id="btnListenDecodrTe" class="text-xs font-semibold text-blue-700 hover:text-blue-900 inline-flex items-center gap-1">
+                    <i data-lucide="volume-2" class="w-3.5 h-3.5"></i> తెలుగులో వినండి
+                  </button>
+                </div>
+                <h4 id="decodrDocType" class="font-bold text-slate-900 text-sm">Apartment Lease Notice</h4>
+                <p id="decodrTeluguMeaning" class="text-xs font-telugu text-slate-800 bg-white p-3 rounded-xl border border-blue-100 leading-relaxed font-medium">
+                  తెలుగు వివరణ లోడ్ అవుతోంది...
+                </p>
+                <p id="decodrEnglishMeaning" class="text-xs text-slate-600 leading-relaxed italic">
+                  English summary loading...
+                </p>
+              </div>
+
+              <!-- Card 2: Action Checklist -->
+              <div class="p-5 rounded-2xl border border-emerald-200 bg-emerald-50/40 space-y-2.5">
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 inline-flex items-center gap-1.5">
+                  <i data-lucide="check-square" class="w-3.5 h-3.5"></i> Card 2: Exact Steps You Must Take
+                </span>
+                <ul id="decodrActionItems" class="space-y-2">
+                  <!-- Action items rendered here -->
+                </ul>
+              </div>
+
+              <!-- Card 3: Pitfalls & Financial Penalties -->
+              <div class="p-5 rounded-2xl border border-rose-200 bg-rose-50/40 space-y-2.5">
+                <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-rose-100 text-rose-800 inline-flex items-center gap-1.5">
+                  <i data-lucide="alert-octagon" class="w-3.5 h-3.5"></i> Card 3: Traps & Financial Penalties
+                </span>
+                <ul id="decodrPitfalls" class="space-y-2">
+                  <!-- Pitfalls rendered here -->
+                </ul>
+              </div>
+
+            </div>
+
+            <!-- Email Response Script -->
+            <div class="p-4 rounded-2xl bg-slate-900 text-white space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
+                  <i data-lucide="mail" class="w-3.5 h-3.5"></i> Ready-to-Send Polite Email Reply
+                </span>
+                <button id="btnCopyCounterScript" class="btn-tap text-xs font-bold text-slate-300 hover:text-white inline-flex items-center gap-1 bg-white/10 px-2.5 py-1 rounded-lg">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy Email
+                </button>
+              </div>
+              <p id="decodrScriptText" class="text-xs font-mono text-slate-300 bg-slate-800 p-3 rounded-lg leading-relaxed">
+                Loading email response template...
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 4: DMVREADY (Driver's License Document Auditor) -->
+    <!-- ===================================================================== -->
+    <section id="panel-dmv" class="tab-panel hidden space-y-6">
+      
+      <!-- Banner -->
+      <div class="bg-gradient-to-r from-brand-navy to-slate-800 text-white rounded-2xl p-6 shadow-md border border-slate-700">
+        <div class="space-y-1">
+          <div class="flex items-center gap-2">
+            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/40 uppercase tracking-wide">DMV & Transportation Steps</span>
+            <span class="text-xs text-slate-300">• APTA Problem #4</span>
+          </div>
+          <h2 class="text-2xl font-extrabold tracking-tight">DMVReady: Immigrant License Document Auditor</h2>
+          <p class="text-sm text-slate-300 font-telugu max-w-2xl">
+            డ్రైవింగ్ లైసెన్స్ ఆఫీస్ (DMV / DPS) వద్ద డాక్యుమెంట్స్ లేక తిరస్కరించబడకుండా... మీ వీసా కేటగిరీకి సరిపడే ఖచ్చితమైన పత్రాల చెక్‌లిస్ట్.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Selection (4 cols) -->
+        <div class="lg:col-span-4 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+          <h3 class="font-extrabold text-slate-900 text-base">Select Your Immigrant Profile</h3>
+          
+          <div class="space-y-1.5">
+            <label class="text-xs font-bold text-slate-600">Visa Category</label>
+            <select id="dmvVisaSelect" class="w-full text-xs font-semibold p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500">
+              <option value="H-4 Dependent">H-4 Visa (Spouse / Dependent)</option>
+              <option value="H-1B Worker">H-1B Visa (Primary Worker)</option>
+              <option value="F-1 Student">F-1 Student (OPT / Initial)</option>
+              <option value="B-2 Visitor">B-1 / B-2 Visitor (Parent on Tourist Visa)</option>
+            </select>
+          </div>
+
+          <div class="space-y-1.5">
+            <label class="text-xs font-bold text-slate-600">Destination State</label>
+            <select id="dmvStateSelect" class="w-full text-xs font-semibold p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500">
+              <option value="Texas (DPS)">Texas (Texas DPS)</option>
+              <option value="California (DMV)">California (California DMV)</option>
+            </select>
+          </div>
+
+          <button id="btnAuditDMV" class="btn-tap w-full py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs shadow-md flex items-center justify-center gap-2">
+            <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+            <span>Audit Required Documents</span>
+          </button>
+        </div>
+
+        <!-- Document Checklist (8 cols) -->
+        <div class="lg:col-span-8 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+          <div id="dmvResult" class="space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+              <h4 class="font-black text-slate-900 text-base">Required Primary & Secondary Documents</h4>
+              <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">Texas DPS Compliant</span>
+            </div>
+
+            <div id="dmvDocsList" class="space-y-3">
+              <!-- Dynamically populated -->
+            </div>
+
+            <div class="bg-slate-900 text-white p-4 rounded-xl space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase tracking-wider text-amber-400">What to Say to the DMV Counter Officer</span>
+                <button id="btnCopyDmvScript" class="btn-tap text-xs font-bold text-slate-300 hover:text-white inline-flex items-center gap-1 bg-white/10 px-2.5 py-1 rounded-lg">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy Script
+                </button>
+              </div>
+              <p id="dmvCounterScriptText" class="text-xs font-mono text-slate-300 bg-slate-800 p-2.5 rounded-lg leading-relaxed">
+                Click "Audit Required Documents" to view the DMV counter script.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 5: SAFEAID (Community Resource Radar & Starter Kit) -->
+    <!-- ===================================================================== -->
+    <section id="panel-safeaid" class="tab-panel hidden space-y-6">
+      <div class="glass-banner text-white rounded-2xl p-6 shadow-md border border-slate-700">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-teal-500/20 text-teal-300 border border-teal-500/40 uppercase tracking-wide">Community & Aid Resources</span>
+              <span class="text-xs text-slate-300">• APTA Problem #5</span>
+            </div>
+            <h2 class="text-2xl font-extrabold tracking-tight">SafeAid: Immigrant Resource Radar & Starter Kit</h2>
+            <p class="text-sm text-slate-300 font-telugu max-w-2xl">
+              ఆహార సహాయం, ఉచిత క్లినిక్‌లు మరియు ఇంగ్లీష్ తరగతులు — ఎలాంటి SSN లేదా గ్రీన్ కార్డ్ భయం లేకుండా సురక్షితంగా పొందగల సహాయ కేంద్రాల వివరాలు.
+            </p>
+          </div>
+          <div class="shrink-0 bg-white/10 p-3 rounded-xl border border-white/20 backdrop-blur-sm space-y-2">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-amber-300 block">⚡ Judge Live Test</span>
+            <button id="btnPresetSafeAid" class="btn-tap w-full inline-flex items-center justify-center gap-2 px-3 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-lg text-xs shadow">
+              <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i>
+              <span>Test: 75038 Irving (Food & Clinic)</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="lg:col-span-4 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+          <h3 class="font-extrabold text-slate-900 text-base flex items-center gap-2 border-b border-slate-100 pb-3">
+            <i data-lucide="search" class="w-4 h-4 text-teal-600"></i>
+            <span>Search Safe Aid in Your Area</span>
+          </h3>
+          <div class="space-y-1.5">
+            <label class="text-xs font-bold text-slate-600">5-Digit US Zip Code</label>
+            <input id="safeAidZipInput" type="text" value="75038" maxlength="5" class="w-full text-xs font-bold p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-teal-500" />
+          </div>
+          <div class="space-y-1.5">
+            <label class="text-xs font-bold text-slate-600">Primary Need Category</label>
+            <select id="safeAidCategorySelect" class="w-full text-xs font-semibold p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-teal-500">
+              <option value="Food & Healthcare Assistance">Food Pantries & Free Health Clinics</option>
+              <option value="Free ESL & Library Services">Adult ESL Classes & Public Libraries</option>
+              <option value="Legal Aid & Consultation">Immigrant Legal Aid (Non-Profit)</option>
+            </select>
+          </div>
+          <button id="btnSearchSafeAid" class="btn-tap w-full py-3 rounded-xl bg-teal-600 hover:bg-teal-500 text-white font-extrabold text-xs shadow-md flex items-center justify-center gap-2">
+            <i data-lucide="shield-check" class="w-4 h-4"></i>
+            <span>Find Safe Aid (No-SSN Filter)</span>
+          </button>
+          <button id="btnPrintStarterKit" class="btn-tap w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs border border-slate-300 flex items-center justify-center gap-2">
+            <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+            <span>Print 1-Page Zip Welcome Kit</span>
+          </button>
+        </div>
+
+        <div class="lg:col-span-8 space-y-4">
+          <div id="safeAidResultsContainer" class="space-y-3">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 6: BAVABAVAM (Cross-Generational Bridge Messenger) -->
+    <!-- ===================================================================== -->
+    <section id="panel-bavabavam" class="tab-panel hidden space-y-6">
+      <div class="glass-banner text-white rounded-2xl p-6 shadow-md border border-slate-700">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/40 uppercase tracking-wide">Family Communication</span>
+              <span class="text-xs text-slate-300">• APTA Problem #7</span>
+            </div>
+            <h2 class="text-2xl font-extrabold tracking-tight">BavaBavam: Emotion & Slang Bridge Messenger</h2>
+            <p class="text-sm text-slate-300 font-telugu max-w-2xl">
+              అమెరికాలో పుట్టిన పిల్లల ఇంగ్లీష్ స్లాంగ్ (Teen Slang) మరియు స్వదేశంలోని తాతయ్యల ఆశీర్వాదాలు, ప్రేమానురాగాలను (Vatsalyam) ఏమాత్రం చెరిగిపోకుండా అనువదిస్తుంది.
+            </p>
+          </div>
+          <div class="shrink-0 bg-white/10 p-3 rounded-xl border border-white/20 backdrop-blur-sm space-y-2">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-amber-300 block">⚡ Judge Live Test</span>
+            <button id="btnPresetBavaBavam" class="btn-tap w-full inline-flex items-center justify-center gap-2 px-3 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-lg text-xs shadow">
+              <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i>
+              <span>Test: Teen Slang vs. Grandpa Blessing</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Teen Side (English Slang) -->
+        <div class="bg-white p-6 rounded-2xl border border-blue-200 shadow-sm space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div class="flex items-center gap-2">
+              <div class="w-3 h-3 rounded-full bg-blue-500"></div>
+              <h4 class="font-bold text-slate-900 text-sm">Grandchild (American Teen)</h4>
+            </div>
+            <span class="text-xs text-slate-400">English Slang / Texts</span>
+          </div>
+          <textarea id="bavaTeenInput" rows="3" class="w-full text-xs p-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 leading-relaxed" placeholder="Type teen slang e.g. 'Grandpa, I'm lowkey stressed for this exam, but gonna grind tonight fr!'"></textarea>
+          <button id="btnSendTeenMessage" class="btn-tap w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl shadow flex items-center justify-center gap-2">
+            <i data-lucide="send" class="w-3.5 h-3.5"></i>
+            <span>Translate & Annotate for Grandpa</span>
+          </button>
+          <div id="bavaTeenOutput" class="hidden p-4 rounded-xl bg-amber-50/70 border border-amber-200 space-y-2 text-xs">
+            <!-- Output -->
+          </div>
+        </div>
+
+        <!-- Grandparent Side (Telugu Blessings) -->
+        <div class="bg-white p-6 rounded-2xl border border-amber-200 shadow-sm space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div class="flex items-center gap-2">
+              <div class="w-3 h-3 rounded-full bg-amber-500"></div>
+              <h4 class="font-bold text-slate-900 text-sm">Grandparent (Telugu Elder)</h4>
+            </div>
+            <span class="text-xs text-slate-400 font-telugu">తెలుగు ఆశీర్వాదాలు</span>
+          </div>
+          <textarea id="bavaElderInput" rows="3" class="w-full text-xs font-telugu p-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 leading-relaxed" placeholder="తెలుగులో సందేశం టైప్ చేయండి ఉదా: 'నాయనా, శ్రద్ధావాన్ లభతే జ్ఞానమ్. నీ కష్టానికి తగిన ప్రతిఫలం దక్కుతుంది.'"></textarea>
+          <button id="btnSendElderMessage" class="btn-tap w-full py-2.5 bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs rounded-xl shadow flex items-center justify-center gap-2">
+            <i data-lucide="send" class="w-3.5 h-3.5"></i>
+            <span>Translate Cultural Tone for Grandchild</span>
+          </button>
+          <div id="bavaElderOutput" class="hidden p-4 rounded-xl bg-blue-50/70 border border-blue-200 space-y-2 text-xs">
+            <!-- Output -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 7: KATHA (Oral Folklore & Recipe Archiver) -->
+    <!-- ===================================================================== -->
+    <section id="panel-katha" class="tab-panel hidden space-y-6">
+      <div class="glass-banner text-white rounded-2xl p-6 shadow-md border border-slate-700">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40 uppercase tracking-wide">Stories & Traditions</span>
+              <span class="text-xs text-slate-300">• APTA Problem #8</span>
+            </div>
+            <h2 class="text-2xl font-extrabold tracking-tight">Katha: Oral Folklore & Spoken Recipe Archiver</h2>
+            <p class="text-sm text-slate-300 font-telugu max-w-2xl">
+              అమ్మమ్మలు, తాతయ్యలు చెప్పే జానపద కథలు మరియు సంప్రదాయ వంటల పద్ధతులను భావితరాల కోసం సచిత్ర డిజిటల్ పుస్తకాలుగా భద్రపరుస్తుంది.
+            </p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <button id="btnPresetKathaStory" class="btn-tap px-3 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-lg text-xs shadow flex items-center gap-1.5">
+              <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
+              <span>Test: Sankranti Story</span>
+            </button>
+            <button id="btnPresetKathaRecipe" class="btn-tap px-3 py-2 bg-rose-600 hover:bg-rose-500 text-white font-bold rounded-lg text-xs shadow flex items-center gap-1.5">
+              <i data-lucide="utensils" class="w-3.5 h-3.5"></i>
+              <span>Test: Gongura Recipe</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="kathaResultContainer" class="space-y-6">
+        <!-- Dynamically populated -->
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 8: ENROLLMENT & FORM EXPLAINER HUB -->
+    <!-- ===================================================================== -->
+    <section id="panel-enrollment" class="tab-panel hidden space-y-6">
+      <div class="glass-banner text-white rounded-2xl p-6 shadow-md border border-slate-700">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 uppercase tracking-wide">Schools & Official Paperwork</span>
+              <span class="text-xs text-slate-300">• APTA Tracks #1A & #2A</span>
+            </div>
+            <h2 class="text-2xl font-extrabold tracking-tight">School Enrollment & Form Explainer Hub</h2>
+            <p class="text-sm text-slate-300 font-telugu max-w-2xl">
+              పిల్లల స్కూల్ అడ్మిషన్ డాక్యుమెంట్స్ చెక్‌లిస్ట్ మరియు ప్రభుత్వ ఫారాల్లోని కష్టమైన బాక్సులకు సులభమైన తెలుగు వివరణ.
+            </p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <button id="btnPresetEnrollment" class="btn-tap px-3 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-lg text-xs shadow flex items-center gap-1.5">
+              <i data-lucide="graduation-cap" class="w-3.5 h-3.5"></i>
+              <span>Test: Kindergarten Enrollment</span>
+            </button>
+            <button id="btnPresetFormExplain" class="btn-tap px-3 py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg text-xs shadow flex items-center gap-1.5">
+              <i data-lucide="file-check" class="w-3.5 h-3.5"></i>
+              <span>Test: Form W-4 Explainer</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Enrollment Wizard -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+          <h3 class="font-extrabold text-slate-900 text-base flex items-center gap-2 border-b border-slate-100 pb-3">
+            <i data-lucide="clipboard-list" class="w-4 h-4 text-amber-600"></i>
+            <span>Track 1A: School Enrollment Document Wizard</span>
+          </h3>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="space-y-1">
+              <label class="text-xs font-bold text-slate-600">Child's Age / Grade</label>
+              <select id="enrollChildAge" class="w-full text-xs font-semibold p-2.5 bg-slate-50 border border-slate-200 rounded-xl">
+                <option value="5 years old (Kindergarten)">5 Years (Kindergarten)</option>
+                <option value="8 years old (3rd Grade)">8 Years (3rd Grade)</option>
+                <option value="14 years old (9th Grade High School)">14 Years (9th Grade)</option>
+              </select>
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-bold text-slate-600">Target School District</label>
+              <select id="enrollDistrict" class="w-full text-xs font-semibold p-2.5 bg-slate-50 border border-slate-200 rounded-xl">
+                <option value="Frisco ISD (Texas)">Frisco ISD (Texas)</option>
+                <option value="Plano ISD (Texas)">Plano ISD (Texas)</option>
+                <option value="Round Rock ISD (Austin)">Round Rock ISD (Austin)</option>
+              </select>
+            </div>
+          </div>
+          <button id="btnAuditEnrollment" class="btn-tap w-full py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs rounded-xl shadow flex items-center justify-center gap-2">
+            <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+            <span>Audit Enrollment & Vaccine Gaps</span>
+          </button>
+          <div id="enrollmentResultContainer" class="space-y-3 pt-2">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <!-- Form Field Explainer -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+          <h3 class="font-extrabold text-slate-900 text-base flex items-center gap-2 border-b border-slate-100 pb-3">
+            <i data-lucide="help-circle" class="w-4 h-4 text-blue-600"></i>
+            <span>Track 2A: AI Government Form Box Explainer</span>
+          </h3>
+          <div class="space-y-1">
+            <label class="text-xs font-bold text-slate-600">Select Official Form</label>
+            <select id="formTypeSelect" class="w-full text-xs font-semibold p-2.5 bg-slate-50 border border-slate-200 rounded-xl">
+              <option value="IRS Form W-4 (Employee Withholding Certificate)">IRS Form W-4 (Paycheck Tax Withholding)</option>
+              <option value="Texas County Homestead Exemption">Texas County Property Tax Homestead Exemption</option>
+              <option value="National School Lunch Fee Waiver Form">Free & Reduced School Lunch Program Application</option>
+            </select>
+          </div>
+          <button id="btnExplainForm" class="btn-tap w-full py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl shadow flex items-center justify-center gap-2">
+            <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+            <span>Explain Form Boxes in Plain Telugu</span>
+          </button>
+          <div id="formExplainResultContainer" class="space-y-3 pt-2">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 9: TRANSIT & DOCTOR PRE-VISIT Q&A HUB -->
+    <!-- ===================================================================== -->
+    <section id="panel-transit" class="tab-panel hidden space-y-6">
+      <div class="glass-banner text-white rounded-2xl p-6 shadow-md border border-slate-700">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/40 uppercase tracking-wide">Transit & Health Preparedness</span>
+              <span class="text-xs text-slate-300">• APTA Tracks #3A & #4B</span>
+            </div>
+            <h2 class="text-2xl font-extrabold tracking-tight">Public Transit & Doctor Pre-Visit Q&A Hub</h2>
+            <p class="text-sm text-slate-300 font-telugu max-w-2xl">
+              డ్రైవింగ్ రాని వారికి సాధారణ బస్సు/రైలు మార్గాల వివరణ మరియు డాక్టర్‌ను కలవడానికి ముందు అడగవలసిన ప్రశ్నల చెక్‌లిస్ట్.
+            </p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <button id="btnPresetTransit" class="btn-tap px-3 py-2 bg-purple-600 hover:bg-purple-500 text-white font-bold rounded-lg text-xs shadow flex items-center gap-1.5">
+              <i data-lucide="bus" class="w-3.5 h-3.5"></i>
+              <span>Test: Transit Route</span>
+            </button>
+            <button id="btnPresetDoctorQA" class="btn-tap px-3 py-2 bg-rose-600 hover:bg-rose-500 text-white font-bold rounded-lg text-xs shadow flex items-center gap-1.5">
+              <i data-lucide="stethoscope" class="w-3.5 h-3.5"></i>
+              <span>Test: Pre-Visit Doctor Q&A</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Transit Route Explainer -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+          <h3 class="font-extrabold text-slate-900 text-base flex items-center gap-2 border-b border-slate-100 pb-3">
+            <i data-lucide="navigation" class="w-4 h-4 text-purple-600"></i>
+            <span>Track 4B: Immigrant Public Transit Route Explainer</span>
+          </h3>
+          <div class="space-y-2 text-xs">
+            <input id="transitOriginInput" type="text" value="Las Colinas Urban Center" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl" placeholder="Starting Point / Apartment" />
+            <input id="transitDestInput" type="text" value="DFW Airport / Irving Mall" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl" placeholder="Destination Address" />
+          </div>
+          <button id="btnExplainTransit" class="btn-tap w-full py-2.5 bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs rounded-xl shadow flex items-center justify-center gap-2">
+            <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+            <span>Explain Bus/Train Route in Simple Steps</span>
+          </button>
+          <div id="transitResultContainer" class="space-y-3 pt-2">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <!-- Doctor Pre-Visit Q&A -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+          <h3 class="font-extrabold text-slate-900 text-base flex items-center gap-2 border-b border-slate-100 pb-3">
+            <i data-lucide="help-circle" class="w-4 h-4 text-rose-600"></i>
+            <span>Track 3A: Doctor Pre-Visit Phrasebook & Q&A Prep</span>
+          </h3>
+          <textarea id="doctorQASymptomInput" rows="2" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-xl" placeholder="Describe your health concern e.g. 'Chest burning and dizziness when climbing stairs'"></textarea>
+          <button id="btnGenerateDoctorQA" class="btn-tap w-full py-2.5 bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs rounded-xl shadow flex items-center justify-center gap-2">
+            <i data-lucide="list-checks" class="w-3.5 h-3.5"></i>
+            <span>Generate Side-by-Side Question Checklist</span>
+          </button>
+          <div id="doctorQAResultContainer" class="space-y-3 pt-2">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 10: IMMIGRANT SMALL BUSINESS HUB -->
+    <!-- ===================================================================== -->
+    <section id="panel-business" class="tab-panel hidden space-y-6">
+      <div class="glass-banner text-white rounded-2xl p-6 shadow-md border border-slate-700">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 uppercase tracking-wide">Economic Empowerment</span>
+              <span class="text-xs text-slate-300">• APTA Problem #6</span>
+            </div>
+            <h2 class="text-2xl font-extrabold tracking-tight">Immigrant Small Business Hub & Directory</h2>
+            <p class="text-sm text-slate-300 font-telugu max-w-2xl">
+              స్వదేశీ వ్యాపారాల డైరెక్టరీ మరియు టెక్సాస్‌లో కొత్త వ్యాపారం/LLC రిజిస్టర్ చేసుకోవడానికి అవసరమైన పూర్తి మార్గదర్శి.
+            </p>
+          </div>
+          <div class="shrink-0 bg-white/10 p-3 rounded-xl border border-white/20 backdrop-blur-sm space-y-2">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-amber-300 block">⚡ Judge Live Test</span>
+            <button id="btnPresetBusinessGuide" class="btn-tap w-full inline-flex items-center justify-center gap-2 px-3 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-lg text-xs shadow">
+              <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i>
+              <span>Test: Texas Catering LLC Guide</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Business Registration Guide -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+          <h3 class="font-extrabold text-slate-900 text-base flex items-center gap-2 border-b border-slate-100 pb-3">
+            <i data-lucide="briefcase" class="w-4 h-4 text-amber-600"></i>
+            <span>Track 6B: State Small Business Registration Guide</span>
+          </h3>
+          <div class="grid grid-cols-2 gap-3 text-xs">
+            <div>
+              <label class="font-bold text-slate-600 block mb-1">State</label>
+              <select id="businessStateSelect" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl font-semibold">
+                <option value="Texas">Texas (SOSDirect)</option>
+                <option value="California">California (BizFile)</option>
+              </select>
+            </div>
+            <div>
+              <label class="font-bold text-slate-600 block mb-1">Entity Type</label>
+              <select id="businessTypeSelect" class="w-full p-2.5 bg-slate-50 border border-slate-200 rounded-xl font-semibold">
+                <option value="Consulting / Home Food Catering LLC">Food Catering / Consulting LLC</option>
+                <option value="Online Retail & Goods">Online Retail & Crafts</option>
+              </select>
+            </div>
+          </div>
+          <button id="btnGenerateBusinessGuide" class="btn-tap w-full py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs rounded-xl shadow flex items-center justify-center gap-2">
+            <i data-lucide="file-check-2" class="w-3.5 h-3.5"></i>
+            <span>Generate Official Registration Roadmap</span>
+          </button>
+          <div id="businessGuideResultContainer" class="space-y-3 pt-2">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <!-- Directory Preview -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
+          <h3 class="font-extrabold text-slate-900 text-base flex items-center gap-2 border-b border-slate-100 pb-3">
+            <i data-lucide="store" class="w-4 h-4 text-emerald-600"></i>
+            <span>Track 6A: Community Immigrant Business Directory</span>
+          </h3>
+          <div class="flex items-center gap-2">
+            <input type="text" placeholder="Search catering, tailors, pooja items..." class="flex-1 text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-xl" />
+            <span class="text-xs font-bold px-2.5 py-1.5 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200">Telugu Spoken</span>
+          </div>
+          <div class="space-y-3 pt-1">
+            <div class="p-3 rounded-xl border border-slate-200 hover:border-amber-400 transition-all space-y-1 text-xs">
+              <div class="flex items-center justify-between">
+                <h5 class="font-bold text-slate-900">Sri Krishna Home Tiffins & Catering</h5>
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800">Frisco, TX</span>
+              </div>
+              <p class="font-telugu text-slate-600">తాజా ఇడ్లీ, దోశ పిండి మరియు పండుగ పిండివంటల ఆర్డర్లు తీసుకోబడును.</p>
+              <span class="inline-block text-[11px] font-semibold text-slate-500">Languages: Telugu, English • Phone: (469) 555-0182</span>
+            </div>
+            <div class="p-3 rounded-xl border border-slate-200 hover:border-amber-400 transition-all space-y-1 text-xs">
+              <div class="flex items-center justify-between">
+                <h5 class="font-bold text-slate-900">Lakshmi Saree Falls & Blouse Alterations</h5>
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-100 text-purple-800">Plano, TX</span>
+              </div>
+              <p class="font-telugu text-slate-600">చీరల ఫాల్స్, జిగ్-జాగ్ మరియు బ్లౌజ్ ఆల్టరేషన్స్ సేవలు.</p>
+              <span class="inline-block text-[11px] font-semibold text-slate-500">Languages: Telugu, Hindi • Phone: (972) 555-0149</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================================= -->
+  <!-- FULLSCREEN "SHOW TO NURSE" CLINICAL MODAL -->
+  <!-- ======================================================================= -->
+  <div id="nurseModal" class="fixed inset-0 z-50 bg-white hidden flex flex-col p-6 sm:p-10 overflow-y-auto">
+    <div class="max-w-4xl w-full mx-auto flex-1 flex flex-col justify-between space-y-6">
+      
+      <!-- Top Bar -->
+      <div class="flex items-center justify-between border-b-2 border-slate-900 pb-4">
+        <div class="flex items-center gap-3">
+          <span class="px-3 py-1 bg-rose-600 text-white font-black text-xs uppercase rounded tracking-wider">
+            Clinical Triage Handout
+          </span>
+          <span class="text-xs font-bold text-slate-500">Patient: Non-English Speaking (Primary: Telugu)</span>
+        </div>
+        <button id="btnCloseNurseModal" class="btn-tap p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-900 font-bold text-sm inline-flex items-center gap-1.5">
+          <i data-lucide="x" class="w-5 h-5"></i>
+          <span>Close Fullscreen</span>
+        </button>
+      </div>
+
+      <!-- Main Clinical Content (High-contrast, large text for nurse) -->
+      <div class="space-y-6">
+        <div>
+          <span class="text-xs font-black uppercase text-slate-400 tracking-wider">Chief Complaint</span>
+          <h1 id="nurseModalComplaint" class="text-3xl sm:text-4xl font-black text-slate-950 mt-1">
+            Acute Epigastric Burning Pain with Dizziness
+          </h1>
+        </div>
+
+        <div class="p-5 bg-slate-100 rounded-2xl border border-slate-300">
+          <span class="text-xs font-black uppercase text-slate-500 tracking-wider">HPI Narrative (Triage Intake)</span>
+          <p id="nurseModalHpi" class="text-base sm:text-lg text-slate-900 font-semibold mt-2 leading-relaxed">
+            Patient presents with a 48-hour history of acute, progressive epigastric burning pain rated 8/10. Symptoms exacerbate postprandially. Accompanied by episodic dizziness and nausea. Non-English speaking (primary language: Telugu). History positive for hypertension and Type 2 diabetes.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="p-4 bg-white rounded-xl border-2 border-slate-900">
+            <span class="text-xs font-black uppercase text-slate-500">Pain & Onset</span>
+            <p id="nurseModalVitals" class="text-base font-black text-rose-600 mt-1">Pain: 8/10 | Onset: 48h</p>
+          </div>
+          <div class="p-4 bg-white rounded-xl border-2 border-slate-900">
+            <span class="text-xs font-black uppercase text-slate-500">Known Allergies</span>
+            <p id="nurseModalAllergies" class="text-base font-black text-slate-900 mt-1">NKDA</p>
+          </div>
+          <div class="p-4 bg-white rounded-xl border-2 border-slate-900">
+            <span class="text-xs font-black uppercase text-slate-500">Current Rx</span>
+            <p id="nurseModalMeds" class="text-sm font-bold text-slate-800 mt-1">Metformin, Amlodipine</p>
+          </div>
+        </div>
+
+        <div class="p-4 bg-amber-50 rounded-xl border border-amber-300">
+          <span class="text-xs font-black uppercase text-amber-900">Clinical Focus Note</span>
+          <p id="nurseModalNotes" class="text-sm text-amber-950 font-bold mt-1">
+            Check orthostatic vitals; blood glucose check recommended; evaluate for acute gastritis vs. biliary colic.
+          </p>
+        </div>
+      </div>
+
+      <!-- Modal Bottom -->
+      <div class="pt-4 border-t border-slate-200 flex justify-between items-center text-xs text-slate-400">
+        <span>Generated via BridgeBuilder AI (ArogyaCard)</span>
+        <button onclick="window.print()" class="text-blue-600 font-bold hover:underline">Print Formatted Copy</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ======================================================================= -->
+  <!-- 8-TRACK FRAMEWORK ROADMAP MODAL -->
+  <!-- ======================================================================= -->
+  <div id="roadmapModal" class="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm hidden flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+    <div class="bg-white max-w-4xl w-full rounded-2xl shadow-2xl border border-slate-200 p-6 sm:p-8 space-y-5 my-8 max-h-[90vh] flex flex-col">
+      <div class="flex items-start justify-between border-b border-slate-100 pb-4 shrink-0">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-black uppercase bg-amber-100 text-amber-900 border border-amber-300">
+              Master Hackathon Framework
+            </span>
+            <span class="text-xs text-slate-500 font-medium">100% Problem Track Coverage (16 Tools)</span>
+          </div>
+          <h3 class="font-black text-slate-950 text-xl sm:text-2xl mt-1">The 8-Track Immigrant Life Architecture</h3>
+          <p class="text-xs text-slate-600 mt-0.5">
+            4 live production engines active in today's demo, backed by complete blueprints across all 8 APTA problem areas.
+          </p>
+        </div>
+        <button id="btnCloseRoadmap" class="text-slate-400 hover:text-slate-700 p-1.5 rounded-lg bg-slate-100">&times;</button>
+      </div>
+
+      <div class="overflow-y-auto flex-1 pr-1 space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          
+          <!-- Track 1 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/70 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-black text-slate-900 flex items-center gap-1.5">
+                <i data-lucide="graduation-cap" class="w-4 h-4 text-amber-600"></i> 1. School Enrollment & Schedules
+              </span>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 uppercase">Live + Blueprint</span>
+            </div>
+            <ul class="text-xs text-slate-600 space-y-1.5">
+              <li class="flex items-start gap-1.5">
+                <span class="font-bold text-slate-900 shrink-0">1A:</span>
+                <span><strong>Enrollment Document Wizard:</strong> Child age/district intake $\rightarrow$ state immunization gap analysis & lease proof checklist.</span>
+              </li>
+              <li class="flex items-start gap-1.5">
+                <span class="font-bold text-emerald-700 shrink-0">1B:</span>
+                <span><strong>School Calendar Extractor (EduBridge):</strong> <span class="text-emerald-700 font-semibold">[LIVE]</span> Flyer to Telugu schedule + 1-click .ICS export.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Track 2 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/70 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-black text-slate-900 flex items-center gap-1.5">
+                <i data-lucide="file-text" class="w-4 h-4 text-blue-600"></i> 2. Forms & Official Documents
+              </span>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 uppercase">Live + Blueprint</span>
+            </div>
+            <ul class="text-xs text-slate-600 space-y-1.5">
+              <li class="flex items-start gap-1.5">
+                <span class="font-bold text-slate-900 shrink-0">2A:</span>
+                <span><strong>AI Government Form Explainer:</strong> Box-by-box guide explaining W-4s, lunch waivers & county exemptions in plain Telugu.</span>
+              </li>
+              <li class="flex items-start gap-1.5">
+                <span class="font-bold text-emerald-700 shrink-0">2B:</span>
+                <span><strong>"What Does This Letter Mean?" (Decodr):</strong> <span class="text-emerald-700 font-semibold">[LIVE]</span> 3-card decision matrix + penalty warnings + counter-email.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Track 3 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/70 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-black text-slate-900 flex items-center gap-1.5">
+                <i data-lucide="stethoscope" class="w-4 h-4 text-rose-600"></i> 3. Language Barriers at Doctor Visits
+              </span>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 uppercase">Live + Blueprint</span>
+            </div>
+            <ul class="text-xs text-slate-600 space-y-1.5">
+              <li class="flex items-start gap-1.5">
+                <span class="font-bold text-slate-900 shrink-0">3A:</span>
+                <span><strong>Pre-Visit Phrasebook & Q&A Checklist:</strong> Side-by-side English/Telugu questions for patients to ask and anticipate at checkup.</span>
+              </li>
+              <li class="flex items-start gap-1.5">
+                <span class="font-bold text-emerald-700 shrink-0">3B:</span>
+                <span><strong>Doctor Visit Triage Card (ArogyaCard):</strong> <span class="text-emerald-700 font-semibold">[LIVE]</span> 3-tap symptoms $\rightarrow$ US nurse triage sheet with Fullscreen mode.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Track 4 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/70 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-black text-slate-900 flex items-center gap-1.5">
+                <i data-lucide="car" class="w-4 h-4 text-purple-600"></i> 4. DMV & Transportation Steps
+              </span>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300 uppercase">Live + Blueprint</span>
+            </div>
+            <ul class="text-xs text-slate-600 space-y-1.5">
+              <li class="flex items-start gap-1.5">
+                <span class="font-bold text-emerald-700 shrink-0">4A:</span>
+                <span><strong>License Document Auditor (DMVReady):</strong> <span class="text-emerald-700 font-semibold">[LIVE]</span> Visa rules engine flagging mandatory SSA-L676 letter.</span>
+              </li>
+              <li class="flex items-start gap-1.5">
+                <span class="font-bold text-slate-900 shrink-0">4B:</span>
+                <span><strong>Immigrant Public Transit Explainer:</strong> Step-by-step local bus/train directions, Telugu fare guide & stop etiquette.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Track 5 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/70 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-black text-slate-900 flex items-center gap-1.5">
+                <i data-lucide="life-buoy" class="w-4 h-4 text-teal-600"></i> 5. Community Resources
+              </span>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 border border-blue-300 uppercase">Architecture Ready</span>
+            </div>
+            <ul class="text-xs text-slate-600 space-y-1.5">
+              <li class="flex items-start gap-1.5">
+                <span class="font-bold text-slate-900 shrink-0">5A:</span>
+                <span><strong>Safe-Aid Chatbot:</strong> Free clinics, food pantries, and ESL classes filtered by "No SSN Required" and "Public Charge Safe".</span>
+              </li>
+              <li class="flex items-start gap-1.5">
+                <span class="font-bold text-slate-900 shrink-0">5B:</span>
+                <span><strong>Zip Code Starter Kit Generator:</strong> 1-page printable immigrant welcome kit indexing nearby libraries, pantries, and temples.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Track 6 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/70 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-black text-slate-900 flex items-center gap-1.5">
+                <i data-lucide="store" class="w-4 h-4 text-amber-600"></i> 6. Immigrant-Owned Businesses
+              </span>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 border border-blue-300 uppercase">Architecture Ready</span>
+            </div>
+            <ul class="text-xs text-slate-600 space-y-1.5">
+              <li class="flex items-start gap-1.5">
+                <span class="font-bold text-slate-900 shrink-0">6A:</span>
+                <span><strong>Bilingual Business Directory:</strong> Hyper-local search for regional home services, tailors, and caterers by language spoken.</span>
+              </li>
+              <li class="flex items-start gap-1.5">
+                <span class="font-bold text-slate-900 shrink-0">6B:</span>
+                <span><strong>Small Business Registration Guide:</strong> Step-by-step LLC filing, free IRS EIN registration, sales tax permits, and EAD compliance.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Track 7 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/70 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-black text-slate-900 flex items-center gap-1.5">
+                <i data-lucide="message-circle" class="w-4 h-4 text-indigo-600"></i> 7. Family Communication
+              </span>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 border border-blue-300 uppercase">Architecture Ready</span>
+            </div>
+            <ul class="text-xs text-slate-600 space-y-1.5">
+              <li class="flex items-start gap-1.5">
+                <span class="font-bold text-slate-900 shrink-0">7A:</span>
+                <span><strong>Generational Bridge Messenger:</strong> Slang and idiom translation that preserves emotional warmth (*Vatsalyam*) between elders and teens.</span>
+              </li>
+              <li class="flex items-start gap-1.5">
+                <span class="font-bold text-slate-900 shrink-0">7B:</span>
+                <span><strong>Shared Bilingual Family Board:</strong> High-contrast, large-font calendar and chore coordinator displaying English and Telugu side-by-side.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Track 8 -->
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50/70 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-black text-slate-900 flex items-center gap-1.5">
+                <i data-lucide="book-heart" class="w-4 h-4 text-rose-600"></i> 8. Stories & Traditions
+              </span>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 border border-blue-300 uppercase">Architecture Ready</span>
+            </div>
+            <ul class="text-xs text-slate-600 space-y-1.5">
+              <li class="flex items-start gap-1.5">
+                <span class="font-bold text-slate-900 shrink-0">8A:</span>
+                <span><strong>Katha Oral Folklore Keeper:</strong> 1-tap voice recording transformed into illustrated English/Telugu digital storybook cards.</span>
+              </li>
+              <li class="flex items-start gap-1.5">
+                <span class="font-bold text-slate-900 shrink-0">8B:</span>
+                <span><strong>Spoken Recipe & Tradition Archiver:</strong> Conversational cooking instructions converted into standardized illustrated recipe cards with US grocery swaps.</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="pt-3 border-t border-slate-200 flex justify-between items-center text-xs text-slate-500 shrink-0">
+        <span>Detailed blueprints documented in <span class="font-bold text-slate-800">REFINED_SOLUTIONS.md</span> and <span class="font-bold text-slate-800">REQUIREMENTS.md</span></span>
+        <button id="btnCloseRoadmapBottom" class="btn-tap px-4 py-2 bg-slate-900 text-white font-bold rounded-xl text-xs hover:bg-slate-800">
+          Close Overview
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================= -->
+  <!-- API KEY SETTINGS MODAL -->
+  <!-- ======================================================================= -->
+  <div id="apiKeyModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-white max-w-md w-full rounded-2xl shadow-2xl border border-slate-200 p-6 space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <h3 class="font-black text-slate-900 text-base flex items-center gap-2">
+          <i data-lucide="key" class="w-4 h-4 text-amber-500"></i>
+          <span>Gemini API Key Settings</span>
+        </h3>
+        <button id="btnCloseApiKey" class="text-slate-400 hover:text-slate-600">&times;</button>
+      </div>
+
+      <p class="text-xs text-slate-500 leading-relaxed">
+        Enter your Google Gemini API key to enable live AI responses. If left blank, the app will automatically use the <span class="font-bold text-amber-600">High-Fidelity Demo Presets</span> for guaranteed hackathon presentation success.
+      </p>
+
+      <div class="space-y-1.5">
+        <label class="text-xs font-bold text-slate-700">Google Gemini API Key</label>
+        <input id="inputApiKey" type="password" placeholder="AIzaSy..." class="w-full text-xs font-mono p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500" />
+      </div>
+
+      <div class="flex items-center justify-end gap-2 pt-2">
+        <button id="btnSaveApiKey" class="btn-tap px-4 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-xl text-xs shadow">
+          Save Settings
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none"></div>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500 no-print mt-auto">
+    <div class="max-w-7xl mx-auto px-4 space-y-1">
+      <p class="font-semibold text-slate-700">BridgeBuilder AI (సేతు) — Built for the APTA Bridge Builders Hackathon</p>
+      <p class="text-[11px] text-slate-400">100% Client-Side Privacy: No Personal Identifiable Information (PII) or Medical Health Data (PHI) is permanently stored.</p>
+    </div>
+  </footer>
+
+  <!-- Application Scripts -->
+  <script src="js/speech.js"></script>
+  <script src="js/calendar.js"></script>
+  <script src="js/gemini.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+/* BridgeBuilder AI - Elevated Modern Design System & Print Stylesheet */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Telugu:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap');
+
+:root {
+  --font-sans: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-telugu: 'Noto Sans Telugu', 'Plus Jakarta Sans', sans-serif;
+  --brand-navy: #0B132B;
+  --brand-navy-light: #1C2541;
+  --brand-amber: #F59E0B;
+  --brand-emerald: #10B981;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #0B1120;
+  color: #1E293B;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Telugu text typography refinement with protective line-height */
+.font-telugu, [lang="te"] {
+  font-family: var(--font-telugu);
+  line-height: 1.8;
+}
+
+/* Glassmorphism styling */
+.glass-card {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+}
+
+.glass-dark {
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(51, 65, 85, 0.6);
+}
+
+.glass-banner {
+  background: linear-gradient(135deg, #0B132B 0%, #172554 50%, #1E1B4B 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.3), 0 8px 10px -6px rgba(15, 23, 42, 0.3);
+}
+
+/* Glowing Border Utilities */
+.glow-amber {
+  box-shadow: 0 0 15px -3px rgba(245, 158, 11, 0.25);
+}
+.glow-emerald {
+  box-shadow: 0 0 15px -3px rgba(16, 185, 129, 0.25);
+}
+.glow-blue {
+  box-shadow: 0 0 15px -3px rgba(59, 130, 246, 0.25);
+}
+.glow-purple {
+  box-shadow: 0 0 15px -3px rgba(139, 92, 246, 0.25);
+}
+
+/* Custom button tap animation */
+.btn-tap {
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-tap:hover {
+  transform: translateY(-1px);
+}
+.btn-tap:active {
+  transform: scale(0.97) translateY(0);
+}
+
+/* Active tab style */
+.nav-tab-active {
+  background: white !important;
+  color: #0F172A !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  border-color: #F59E0B !important;
+}
+
+/* Chat bubble styling for BavaBavam Messenger */
+.chat-bubble-teen {
+  background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+  color: white;
+  border-radius: 18px 18px 4px 18px;
+}
+.chat-bubble-elder {
+  background: linear-gradient(135deg, #D97706 0%, #B45309 100%);
+  color: white;
+  border-radius: 18px 18px 18px 4px;
+}
+.chat-bubble-ai {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 14px;
+}
+
+/* Storybook card styling for Katha */
+.storybook-card {
+  background: linear-gradient(to bottom, #FFFDF7, #FEF9C3 15%, #FFFFFF 30%);
+  border: 2px solid #FDE68A;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0F172A;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Pulse animation for active live indicators */
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); opacity: 0.9; }
+  50% { transform: scale(1.18); opacity: 0.25; }
+  100% { transform: scale(0.95); opacity: 0.9; }
+}
+.pulse-indicator {
+  animation: pulse-ring 2s infinite ease-in-out;
+}
+
+/* Shimmer animation for loading states */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.animate-shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ==========================================================================
+   PRINT MEDIA STYLES (For Doctor Visit Clinical Intake Sheet & Starter Kits)
+   ========================================================================== */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 11pt !important;
+  }
+  
+  header, footer, nav, .no-print, #apiKeyModal, #nurseModal, #roadmapModal, .demo-preset-bar {
+    display: none !important;
+  }
+
+  .printable-card {
+    display: block !important;
+    border: 2px solid #000000 !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    padding: 1.5rem !important;
+    margin: 0 !important;
+    width: 100% !important;
+    page-break-inside: avoid;
+  }
+
+  .printable-card * {
+    color: #000000 !important;
+    border-color: #cccccc !important;
+  }
+
+  .printable-card .print-header {
+    border-bottom: 2px solid #000000 !important;
+    padding-bottom: 0.75rem !important;
+    margin-bottom: 1rem !important;
+  }
+}
