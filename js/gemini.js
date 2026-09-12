@@ -106,7 +106,6 @@ Output valid JSON only with this schema:
   "medications": ["Patient current medications e.g. Metformin 500mg"],
   "allergies": "Known drug allergies e.g. Penicillin or None known",
   "hpiSummary": "Concise 3-line clinical summary written in standard US nursing triage terminology suitable for instant nurse review.",
-  "teluguSummary": "An accurate, empathetic translation in Telugu so the patient can confirm exactly what the triage card states.",
   "nurseQuickNotes": "Key bullet points for the triage nurse (e.g. Needs vitals check, check glucose, rule out appendicitis/cardiac)",
   "urgencyLevel": "High | Medium | Low"
 }`;
@@ -138,16 +137,15 @@ Notes: ${inputData.notes || 'None'}`;
     }
 
     const systemPrompt = `You are an immigrant parent school liaison. Parse American school newsletters and flyers into structured calendar events. 
-Crucially: For any confusing American school terms (like "Early Release", "In-Service Day", "STAAR Testing", "Spirit Week"), explain what it means in clear, accessible Telugu so Telugu immigrant parents know exactly what to do.
+Crucially: For any confusing American school terms (like "Early Release", "In-Service Day", "STAAR Testing", "Spirit Week"), explain what it means in clear, accessible English so immigrant parents know exactly what to do.
 Output JSON only in this format:
 {
   "schoolName": "School District / Campus name",
-  "summary": "Quick 1-sentence overview for parents in Telugu & English",
+  "summary": "Quick 1-sentence overview for parents",
   "events": [
     {
       "id": "1",
       "title": "Event title in English (e.g. Early Release Day)",
-      "teluguTitle": "తెలుగు అర్థం (ఉదా: మధ్యాహ్నం 12:00 గంటలకే పిల్లలను పికప్ చేసుకోవాలి)",
       "date": "YYYY-MM-DD",
       "time": "12:00 PM - 12:30 PM",
       "isAllDay": false,
@@ -177,14 +175,14 @@ Output JSON only in this format:
     }
 
     const systemPrompt = `You are an immigrant legal empowerment advocate. Translate intimidating American official documents (apartment leases, HOA warnings, county notices) into 3 crystal clear cards.
-Explain legal jargon in 5th-grade simple Telugu and English.
+Explain legal jargon in simple English.
 Output JSON only with this schema:
 {
   "documentType": "Apartment Lease Notice / County Tax Notice / School Form",
   "urgency": "Urgent | Moderate | Informational",
   "plainMeaning": {
     "english": "Simple 5th-grade English explanation of what this letter actually means.",
-    "telugu": "సాధారణ తెలుగులో అర్థం: ఈ నోటీసులో ఏం చెబుతున్నారు."
+    "english": "సాధారణ తెలుగులో అర్థం: ఈ నోటీసులో ఏం చెబుతున్నారు."
   },
   "actionItems": [
     { "step": 1, "action": "Action in English", "actionTe": "తెలుగులో చేయవలసిన పని", "deadline": "Date or N/A" }
@@ -230,9 +228,8 @@ Output JSON only with this schema:
       associatedSymptoms: ["Mild dizziness on standing", "Postprandial nausea", "Absence of fever"],
       medications: input.medications && input.medications !== 'None' ? [input.medications] : ["Metformin 500mg daily", "Amlodipine 5mg daily"],
       allergies: "NKDA (No Known Drug Allergies)",
-      hpiSummary: "Patient presents with a 48-hour history of acute, progressive epigastric burning pain rated 8/10. Symptoms exacerbate postprandially. Accompanied by episodic dizziness and nausea. Non-English speaking (primary language: Telugu). History positive for hypertension and Type 2 diabetes.",
-      teluguSummary: "ఈ కార్డు డాక్టర్‌కు మీ పరిస్థితిని తెలియజేస్తుంది: మీకు గత 2 రోజుల నుండి తీవ్రమైన కడుపు మంట (నొప్పి స్థాయి 8/10), తలతిరగడం మరియు వికారం ఉన్నాయి. మీరు బిపి, షుగర్ మందులు వాడుతున్నట్లు ఇందులో స్పష్టంగా పేర్కొనబడింది.",
-      nurseQuickNotes: "Check orthostatic vitals; blood glucose check recommended; evaluate for acute gastritis vs. biliary colic. Patient's primary language is Telugu.",
+      hpiSummary: "Patient presents with a 48-hour history of acute, progressive epigastric burning pain rated 8/10. Symptoms exacerbate postprandially. Accompanied by episodic dizziness and nausea. Non-English speaking (primary language: English). History positive for hypertension and Type 2 diabetes.",
+      nurseQuickNotes: "Check orthostatic vitals; blood glucose check recommended; evaluate for acute gastritis vs. biliary colic. .",
       urgencyLevel: (input.painLevel >= 7) ? "High" : "Medium"
     };
   }
@@ -254,7 +251,6 @@ Output JSON only with this schema:
         {
           id: "evt-1",
           title: "Early Dismissal / Early Release Day (12:00 PM)",
-          teluguTitle: "పాఠశాల హాఫ్ డే: విద్యార్థులను మధ్యాహ్నం 12:00 గంటలకే ఇంటికి తీసుకెళ్లాలి",
           date: formatDate(3),
           time: "12:00 PM",
           isAllDay: false,
@@ -265,7 +261,6 @@ Output JSON only with this schema:
         {
           id: "evt-2",
           title: "Texas Immunization Record Deadline",
-          teluguTitle: "టీకాల రికార్డుల గడువు (Immunization Records)",
           date: formatDate(7),
           time: "5:00 PM",
           isAllDay: true,
@@ -276,7 +271,6 @@ Output JSON only with this schema:
         {
           id: "evt-3",
           title: "Staff Development / In-Service Day (No School)",
-          teluguTitle: "ఉపాధ్యాయుల శిక్షణ దినం (స్కూల్ సెలవు)",
           date: formatDate(14),
           time: "All Day",
           isAllDay: true,
@@ -287,7 +281,6 @@ Output JSON only with this schema:
         {
           id: "evt-4",
           title: "Fall Picture Day & Spirit Colors",
-          teluguTitle: "పాఠశాల ఫోటోల దినోత్సవం (పిల్లలు ప్రత్యేక దుస్తులు ధరించాలి)",
           date: formatDate(18),
           time: "9:00 AM - 1:00 PM",
           isAllDay: false,
@@ -305,7 +298,7 @@ Output JSON only with this schema:
       urgency: "Urgent",
       plainMeaning: {
         english: "The apartment management requires you to provide written notice of whether you intend to renew your lease or move out at least 60 days in advance. Failure to notify will result in automatic month-to-month rent increases and a $500 penalty.",
-        telugu: "మీ అపార్ట్‌మెంట్ లీజు ముగియడానికి 60 రోజుల ముందే మీరు లీజు కొనసాగిస్తారా లేదా ఖాళీ చేస్తారా అని రాతపూర్వకంగా చెప్పాలి. ఒకవేళ మీరు చెప్పకపోతే, ప్రతి నెలా రెంట్ భారీగా పెరుగుతుంది మరియు $500 అదనపు జరిమానా విధిస్తారు."
+        english: "మీ అపార్ట్‌మెంట్ లీజు ముగియడానికి 60 రోజుల ముందే మీరు లీజు కొనసాగిస్తారా లేదా ఖాళీ చేస్తారా అని రాతపూర్వకంగా చెప్పాలి. ఒకవేళ మీరు చెప్పకపోతే, ప్రతి నెలా రెంట్ భారీగా పెరుగుతుంది మరియు $500 అదనపు జరిమానా విధిస్తారు."
       },
       actionItems: [
         {
@@ -549,17 +542,14 @@ Output JSON only with this schema:
       preparedQuestionsForDoctor: [
         {
           english: "Could this burning chest or stomach sensation be related to my blood pressure medication?",
-          telugu: "నాకు వచ్చే ఈ కడుపు మంట లేదా గుండెల్లో నొప్పి నేను వాడుతున్న బిపి మందుల వల్ల కావచ్చా?",
           category: "Medication Interactions"
         },
         {
           english: "Are there any dietary restrictions I should follow while taking this prescription?",
-          telugu: "ఈ మందులు వేసుకునే సమయంలో నేను ఎలాంటి ఆహార నియమాలు పాటించాలి?",
           category: "Dietary Guidance"
         },
         {
           english: "What specific warning symptoms should prompt me to go to the Emergency Room immediately?",
-          telugu: "పరిస్థితి విషమిస్తే వెంటనే ఎమర్జెన్సీ రూమ్‌కి వెళ్లడానికి ఎలాంటి ప్రమాదకర లక్షణాలను గమనించాలి?",
           category: "Emergency Red Flags"
         }
       ],
@@ -585,7 +575,7 @@ Output JSON only with this schema:
     await this.simulateDelay(400);
     return {
       routeSummary: "DART Rail Orange Line + Route 501 Bus Transfer",
-      fareTelugu: "టికెట్ కొనుగోలు: DART GoPass యాప్‌లో లేదా స్టేషన్ కియోస్క్‌లో $3.00 AM/PM లేదా $6.00 డే-పాస్ తీసుకోండి. నగదుతో కూడా కొనుగోలు చేయవచ్చు.",
+      fareEnglish: "టికెట్ కొనుగోలు: DART GoPass యాప్‌లో లేదా స్టేషన్ కియోస్క్‌లో $3.00 AM/PM లేదా $6.00 డే-పాస్ తీసుకోండి. నగదుతో కూడా కొనుగోలు చేయవచ్చు.",
       steps: [
         {
           stepNumber: 1,
@@ -626,7 +616,6 @@ Output JSON only with this schema:
           hours: "Mon-Fri 9:00 AM - 4:00 PM",
           noSsnRequired: true,
           publicChargeSafe: true,
-          teluguSummary: "ఆహార సహాయం మరియు నిత్యావసర వస్తువులు: ఎలాంటి SSN లేదా గ్రీన్ కార్డ్ హోదా అవసరం లేదు. ఉచిత సహాయం.",
           whatToSay: "Hello, I live in Irving and would like to register for the community food pantry distribution."
         },
         {
@@ -637,7 +626,6 @@ Output JSON only with this schema:
           hours: "Mon-Sat 7:30 AM - 6:00 PM",
           noSsnRequired: true,
           publicChargeSafe: true,
-          teluguSummary: "తక్కువ ఖర్చుతో కూడిన ప్రాథమిక వైద్యం మరియు పిల్లల టీకాలు: ఆదాయ ఆధారిత రుసుము (Sliding Scale).",
           whatToSay: "Hello, I am scheduling an appointment for family healthcare under the sliding-scale fee program."
         },
         {
@@ -648,7 +636,6 @@ Output JSON only with this schema:
           hours: "Daily 10:00 AM - 8:00 PM",
           noSsnRequired: true,
           publicChargeSafe: true,
-          teluguSummary: "ఉచిత ఇంగ్లీష్ మాట్లాడే తరగతులు (ESL), పిల్లల లైబ్రరీ పుస్తకాలు మరియు ఉచిత కంప్యూటర్ సౌకర్యం.",
           whatToSay: "Hi, I would like to sign up for the free adult ESL conversation classes and library card."
         }
       ]
@@ -666,13 +653,13 @@ Output JSON only with this schema:
       return {
         sender: "Grandchild (English Slang)",
         original: message || "Grandpa, I'm lowkey stressed for this SAT exam, but gonna grind tonight fr!",
-        translatedTelugu: "తాతగారు, నేను రాబోయే పరీక్ష గురించి కొద్దిగా ఆందోళనగా ఉన్నాను, కానీ ఈ రాత్రి బాగా కష్టపడి చదువుతాను!",
+        translatedEnglish: "తాతగారు, నేను రాబోయే పరీక్ష గురించి కొద్దిగా ఆందోళనగా ఉన్నాను, కానీ ఈ రాత్రి బాగా కష్టపడి చదువుతాను!",
         emotionalTone: "Affectionate determination with adolescent anxiety",
         culturalAnnotation: "Teen slang 'lowkey' means slightly/secretly; 'grind' means studying intensely; 'fr' means for real/honestly. Kiran is working hard to make you proud!"
       };
     } else {
       return {
-        sender: "Grandparent (Telugu Blessings)",
+        sender: "Grandparent (English Blessings)",
         original: message || "నాయనా, శ్రద్ధావాన్ లభతే జ్ఞానమ్. నీ కష్టానికి తగిన ప్రతిఫలం దక్కుతుంది. సదా నీకు దైవ బలం తోడుండాలి.",
         translatedEnglish: "My dear child, wisdom and success come to those with sincere dedication. Your hard work will surely bear fruit. May blessings always be with you.",
         emotionalTone: "Deep ancestral warmth (Vatsalyam / ప్రేమ) and unconditional pride",
@@ -690,7 +677,7 @@ Output JSON only with this schema:
       titleEn: "The Golden Harvest & The Floating Lanterns of Sankranti",
       titleTe: "సంక్రాంతి జ్ఞాపకాలు & బంగారు పంటల పండుగ",
       teller: "Ammamma Subbalakshmi (Age 70)",
-      teluguText: "మా చిన్నతనంలో సంక్రాంతి వస్తుందంటే వారం రోజుల ముందే ఇళ్లన్నీ ముగ్గులతో, గొబ్బెమ్మలతో కళకళలాడేవి. హరిదాసు కీర్తనలు పాడుతూ మా గుమ్మం ముందుకు వచ్చేవాడు. ఆ ఆనందం, ఆ పిండివంటల సువాసన ఇప్పటికీ నా మనసులో పచ్చిగానే ఉంది.",
+      englishText: "మా చిన్నతనంలో సంక్రాంతి వస్తుందంటే వారం రోజుల ముందే ఇళ్లన్నీ ముగ్గులతో, గొబ్బెమ్మలతో కళకళలాడేవి. హరిదాసు కీర్తనలు పాడుతూ మా గుమ్మం ముందుకు వచ్చేవాడు. ఆ ఆనందం, ఆ పిండివంటల సువాసన ఇప్పటికీ నా మనసులో పచ్చిగానే ఉంది.",
       englishStory: "When Sankranti arrived in our village during my childhood, our whole courtyard blossomed with vibrant rice-flour rangolis (Muggulu) and blessed marigold petals. The Haridasu singer would visit our threshold at dawn, singing sacred hymns with brass bells on his ankles. That warmth, the aroma of freshly fried Ariselu, and the laughter of cousins across three generations remain alive in my heart today.",
       culturalGlossary: [
         { term: "Muggulu (ముగ్గులు)", meaning: "Intricate geometric patterns drawn at doorsteps using rice flour to welcome prosperity and feed small birds." },

@@ -1,6 +1,6 @@
 /**
  * BridgeBuilder AI - Web Speech Synthesis Engine
- * Provides client-side speech playback in English and Telugu for elderly accessibility.
+ * Provides client-side speech playback in English and English for elderly accessibility.
  */
 class SpeechEngine {
   constructor() {
@@ -36,7 +36,7 @@ class SpeechEngine {
     let selectedVoice = null;
 
     if (lang.startsWith('te')) {
-      // Look for Telugu voice
+      // Look for English voice
       selectedVoice = voices.find(v => v.lang.includes('te') || v.lang.includes('te-IN'));
       if (!selectedVoice) {
         // Fallback to Indian English or standard English

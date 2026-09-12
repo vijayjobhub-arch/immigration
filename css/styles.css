@@ -3,25 +3,19 @@
 
 :root {
   --font-sans: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-telugu: 'Noto Sans Telugu', 'Plus Jakarta Sans', sans-serif;
-  --brand-navy: #0B132B;
-  --brand-navy-light: #1C2541;
-  --brand-amber: #F59E0B;
-  --brand-emerald: #10B981;
+  --brand-navy: #09090b;
+  --brand-navy-light: #18181b;
+  --brand-violet: #8b5cf6;
+  --brand-teal: #14b8a6;
 }
 
+/* Background reset for the new theme */
 body {
   font-family: var(--font-sans);
-  background-color: #0B1120;
-  color: #1E293B;
+  background-color: #09090b; /* zinc-950 */
+  color: #27272a;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-/* Telugu text typography refinement with protective line-height */
-.font-telugu, [lang="te"] {
-  font-family: var(--font-telugu);
-  line-height: 1.8;
 }
 
 /* Glassmorphism styling */
@@ -40,23 +34,20 @@ body {
 }
 
 .glass-banner {
-  background: linear-gradient(135deg, #0B132B 0%, #172554 50%, #1E1B4B 100%);
+  background: linear-gradient(135deg, #09090b 0%, #18181b 50%, #27272a 100%);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.3), 0 8px 10px -6px rgba(15, 23, 42, 0.3);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
 }
 
 /* Glowing Border Utilities */
-.glow-amber {
-  box-shadow: 0 0 15px -3px rgba(245, 158, 11, 0.25);
+.glow-violet {
+  box-shadow: 0 0 15px -3px rgba(139, 92, 246, 0.35);
 }
-.glow-emerald {
-  box-shadow: 0 0 15px -3px rgba(16, 185, 129, 0.25);
+.glow-teal {
+  box-shadow: 0 0 15px -3px rgba(20, 184, 166, 0.25);
 }
 .glow-blue {
   box-shadow: 0 0 15px -3px rgba(59, 130, 246, 0.25);
-}
-.glow-purple {
-  box-shadow: 0 0 15px -3px rgba(139, 92, 246, 0.25);
 }
 
 /* Custom button tap animation */
@@ -73,9 +64,9 @@ body {
 /* Active tab style */
 .nav-tab-active {
   background: white !important;
-  color: #0F172A !important;
+  color: #09090b !important;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-  border-color: #F59E0B !important;
+  border-color: #8b5cf6 !important;
 }
 
 /* Chat bubble styling for BavaBavam Messenger */
@@ -85,7 +76,7 @@ body {
   border-radius: 18px 18px 4px 18px;
 }
 .chat-bubble-elder {
-  background: linear-gradient(135deg, #D97706 0%, #B45309 100%);
+  background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
   color: white;
   border-radius: 18px 18px 18px 4px;
 }

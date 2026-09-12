@@ -10,13 +10,13 @@
 
 | Track | Core Focus | Tool A (Intake / Wizard) | Tool B (Translator / Action Engine) | Live Demo Status | Measurable Impact |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **1. School Schedules & Enrollment** | Educational integration | **Enrollment Document Wizard** (Age, district, docs) | **Bilingual School Calendar Extractor** (.ics export) | ✅ Live Tested (EduBridge) | 100% deadline capture; 0 missed pickups |
+| **1. School Schedules & Enrollment** | Educational integration | **Enrollment Document Wizard** (Age, district, docs) | **Clinical School Calendar Extractor** (.ics export) | ✅ Live Tested (EduBridge) | 100% deadline capture; 0 missed pickups |
 | **2. Forms & Official Documents** | Legal & administrative clarity | **AI Government Form Field Explainer** (Box-by-box) | **"What Does This Letter Mean?" Scanner** (3-card output) | ✅ Live Tested (Decodr) | Eliminates legal panic, saves $100+ fines |
-| **3. Doctor Visits & Healthcare** | Clinical communication | **Pre-Visit Phrasebook & Doctor Q&A Checklist** | **1-Tap Bilingual Clinical Triage Card** (Show to Nurse) | ✅ Live Tested (ArogyaCard) | Triage intake reduced from 25m to 30s |
+| **3. Doctor Visits & Healthcare** | Clinical communication | **Pre-Visit Phrasebook & Doctor Q&A Checklist** | **1-Tap Clinical Clinical Triage Card** (Show to Nurse) | ✅ Live Tested (ArogyaCard) | Triage intake reduced from 25m to 30s |
 | **4. DMV & Transportation** | Mobility & licensing | **State License Document Auditor & Test Prep** (SSA-L676) | **Immigrant Public Transit Route Explainer** | ✅ Live Tested (DMVReady) | 0 counter rejections; 4–8 hours saved |
 | **5. Community Resources** | Social safety net & aid | **Safe Aid Chatbot** (Food, ESL, Legal - No SSN filter) | **Zip Code Immigrant "Starter Kit" Generator** | 📋 Complete Blueprint | Instant access to verified public-charge-safe aid |
-| **6. Immigrant Businesses** | Economic empowerment | **Bilingual Immigrant Business Directory** | **State-by-State Small Business Registration Guide** | 📋 Complete Blueprint | Clear entity, EIN & sales tax filing path |
-| **7. Family Communication** | Cross-generational bonding | **Generational Slang & Idiom Bridge Messenger** | **Bilingual Shared Family Calendar & Chore Board** | 📋 Complete Blueprint | Deepens grandparent-grandchild relationships |
+| **6. Immigrant Businesses** | Economic empowerment | **Clinical Immigrant Business Directory** | **State-by-State Small Business Registration Guide** | 📋 Complete Blueprint | Clear entity, EIN & sales tax filing path |
+| **7. Family Communication** | Cross-generational bonding | **Generational Slang & Idiom Bridge Messenger** | **Clinical Shared Family Calendar & Chore Board** | 📋 Complete Blueprint | Deepens grandparent-grandchild relationships |
 | **8. Stories & Traditions** | Cultural heritage preservation | **Voice Memory & Oral Folklore Keeper** | **Spoken Recipe & Tradition Step-by-Step Archiver** | 📋 Complete Blueprint | Permanent audio-visual cultural preservation |
 
 ---
@@ -42,12 +42,12 @@ Newly arrived immigrant parents face two distinct hurdles:
 
 ---
 
-### Tool 1B: Bilingual School Calendar & Flyer Translator (Built & Live: EduBridge)
+### Tool 1B: Clinical School Calendar & Flyer Translator (Built & Live: EduBridge)
 * **Target Persona**: **Suresh & Radhika** (Frisco, TX), parents of an 8-year-old 3rd grader.
 * **Core Functionality**:
   * Parents paste newsletter text or upload flyer images.
   * Gemini extracts all dates, times, and event categories.
-  * **Telugu Translation & Jargon Decoder**:
+  * **Plain English Translation & Jargon Decoder**:
     * *"Early Release"* $\rightarrow$ **పాఠశాల హాఫ్ డే: విద్యార్థులను మధ్యాహ్నం 12:00 గంటలకే ఇంటికి తీసుకెళ్లాలి** (Pick up at 12:00 PM; no after-school care).
     * *"In-Service / Staff Development Day"* $\rightarrow$ **ఉపాధ్యాయుల శిక్షణ దినం (స్కూల్ సెలవు)** (Campus closed for students).
   * **1-Click Sync**: Generates RFC-5545 compliant `.ics` calendar files with 24-hour reminder alarms for Google Calendar, Apple iCal, and Outlook.
@@ -70,7 +70,7 @@ Immigrant families frequently receive daunting official communications. Two spec
   * Upload a photo or PDF of a government or school form.
   * Gemini breaks the form down into a field-by-field interactive walkthrough:
     * **Field Name in English**: e.g., "Line 4(c): Extra Withholding".
-    * **Native Language Explanation (Telugu)**: *మీ జీతం నుండి ప్రతి నెలా ఎంత అదనపు పన్ను మినహాయించాలో ఇక్కడ రాయాలి.*
+    * **Native Language Explanation (English)**: *మీ జీతం నుండి ప్రతి నెలా ఎంత అదనపు పన్ను మినహాయించాలో ఇక్కడ రాయాలి.*
     * **Common Immigrant Pitfalls**: Alerts user not to claim exempt unless meeting strict statutory requirements.
     * **Sample Entry Guidance**: Provides valid formatting (e.g., SSN vs. ITIN formatting).
 * **Measurable Impact**: Prevents IRS/county processing rejections and eliminates expensive CPA assistance for basic paperwork.
@@ -81,8 +81,8 @@ Immigrant families frequently receive daunting official communications. Two spec
 * **Target Persona**: **Venkat (29)**, H-1B renter in Irving, TX receiving an intimidating multi-page "Notice of Non-Renewal & Lease Addendum".
 * **Core Functionality**:
   * Paste letter text or photograph the physical mail piece.
-  * Generates a **3-Card Plain Telugu Decision Matrix**:
-    1. 🟢 **Card 1 (Plain Meaning)**: What the letter actually says in 5th-grade Telugu & English.
+  * Generates a **3-Card Plain English Decision Matrix**:
+    1. 🟢 **Card 1 (Plain Meaning)**: What the letter actually says in 5th-grade English & English.
     2. 🟡 **Card 2 (Action Checklist)**: Exact steps required with firm dates (e.g., *"Submit written renewal or move-out notice before Oct 31"*).
     3. 🔴 **Card 3 (Traps & Penalties)**: Highlights monetary penalties (e.g., *"$500 non-notification penalty + $350/mo automatic rent increase"*).
     4. ✉️ **Ready-to-Send Polite Email**: Auto-generates a formal reply email for the landlord/agency that can be copied with 1 click.
@@ -102,7 +102,7 @@ Visiting immigrant elders face high anxiety and clinical risk when acute medical
 ### Tool 3A: Pre-Visit Phrasebook & Symptom-to-Question Checklist
 * **Target Persona**: **Narayana Rao (68)**, visiting Fremont, CA. He has chronic knee arthritis and mild chest flutter, feeling nervous about his upcoming clinic checkup.
 * **Core Functionality**:
-  * Patient speaks or selects their concerns in Telugu (*"నాకు మెట్లు ఎక్కుతుంటే ఆయాసం వస్తుంది, అలాగే మోకాలి నొప్పి"*).
+  * Patient speaks or selects their concerns in English (*"నాకు మెట్లు ఎక్కుతుంటే ఆయాసం వస్తుంది, అలాగే మోకాలి నొప్పి"*).
   * AI produces a dual-language **Doctor Question Preparation Sheet**:
     * **Questions for the Doctor (Side-by-Side EN/TE)**:
       * *EN*: "Doctor, could my breathlessness when climbing stairs be related to my blood pressure medication?"
@@ -113,15 +113,15 @@ Visiting immigrant elders face high anxiety and clinical risk when acute medical
 
 ---
 
-### Tool 3B: 1-Tap Bilingual Clinical Triage Card (Built & Live: ArogyaCard)
+### Tool 3B: 1-Tap Clinical Clinical Triage Card (Built & Live: ArogyaCard)
 * **Target Persona**: **Lakshmi Amma (64)**, visiting her son in Dallas from Guntur. Experiences severe abdominal spasms while alone at home.
 * **Core Functionality**:
   * 3 taps on mobile: Primary Symptom (Stomach/Abdomen) $\rightarrow$ Pain Intensity (8/10 Burning) $\rightarrow$ Duration (2 days) + Meds (Metformin, Amlodipine).
   * Gemini formats into an authentic **US Nursing Clinical Intake Summary** (SOAP note style):
     * Chief Complaint: *Acute Epigastric Burning Pain with Dizziness*.
-    * Clinical History: *48-hour progressive epigastric burning, non-English speaking (Telugu), hypertension positive*.
+    * Clinical History: *48-hour progressive epigastric burning, non-English speaking (English), hypertension positive*.
   * **"Show to Nurse" Fullscreen Display**: High-contrast, large-type English triage card designed to be handed immediately to triage staff.
-  * **Bilingual Voice Readout**: Web Speech synthesis reads the Telugu summary to the elder and English intake to the nurse.
+  * **Clinical Voice Readout**: Web Speech synthesis reads the English summary to the elder and English intake to the nurse.
 * **Measurable Impact**: Drops emergency triage wait times from 25 minutes (waiting for phone interpreters) to **under 30 seconds**; prevents medication miscommunication.
 
 ---
@@ -152,7 +152,7 @@ Non-citizens (visas, dependents, students) encounter the highest counter-rejecti
   * Enter Origin and Destination (e.g. Apartment to Community College / Grocery Store).
   * Instead of confusing transit maps, generates a **Plain-Language Transit Step-by-Step Guide**:
     * Which bus/train number to board (e.g., *DART Orange Line*).
-    * Exact Telugu guidance on fare purchase: *"టికెట్ ఎలా కొనాలి: GoPass యాప్‌లో లేదా స్టేషన్ కియోస్క్‌లో $3.00 డే-పాస్ తీసుకోండి."*
+    * Exact English guidance on fare purchase: *"టికెట్ ఎలా కొనాలి: GoPass యాప్‌లో లేదా స్టేషన్ కియోస్క్‌లో $3.00 డే-పాస్ తీసుకోండి."*
     * Transfer instructions: Which stop to exit, where to wait for the connecting bus.
     * Safety & Etiquette tips: Pressing the yellow tape/cord before your stop, requesting stop in advance.
 * **Measurable Impact**: Eliminates transportation isolation for non-driving spouses and students; reduces Uber/Lyft dependency.
@@ -169,7 +169,7 @@ Immigrant families hesitate to seek aid due to fear of "Public Charge" inadmissi
 ### Tool 5A: "Safe-Aid" Resource Finder Chatbot
 * **Target Persona**: **Ravi**, an international scholar in Irving, TX (75038) seeking free infant immunization clinics and English conversation classes for his non-working spouse.
 * **Core Functionality**:
-  * Conversational query in Telugu or English (*"నాతో SSN లేదు, నా పాపకి ఫ్రీగా టీకాలు ఎక్కడ దొరుకుతాయి?"*).
+  * Conversational query in English or English (*"నాతో SSN లేదు, నా పాపకి ఫ్రీగా టీకాలు ఎక్కడ దొరుకుతాయి?"*).
   * Curated database filtered by immigration safety:
     * **No-SSN-Required Filter**: Clearly marks clinics and pantries that do not ask for SSN or legal status.
     * **Public Charge Safe**: Explicitly marks that county immunization and food pantry aid do NOT impact green card or visa applications.
@@ -198,12 +198,12 @@ Immigrant entrepreneurs face high barriers when registering new enterprises and 
 
 ---
 
-### Tool 6A: Bilingual Immigrant Business Directory & Map
-* **Target Persona**: Immigrant community members looking for regional home services (saree alterations, Telugu catering, regional pooja groceries).
+### Tool 6A: Clinical Immigrant Business Directory & Map
+* **Target Persona**: Immigrant community members looking for regional home services (saree alterations, English catering, regional pooja groceries).
 * **Core Functionality**:
   * Category search: Groceries, Tailoring/Alterations, Home Tiffin Catering, Legal/Tax Consultations.
-  * **Language Spoken Filter**: Search specifically for businesses where staff speaks Telugu, Hindi, or Tamil.
-  * Business Owner Self-Listing Portal: Simple 2-minute bilingual listing submission form.
+  * **Language Spoken Filter**: Search specifically for businesses where staff speaks English, Hindi, or Tamil.
+  * Business Owner Self-Listing Portal: Simple 2-minute clinical listing submission form.
 * **Measurable Impact**: Drives hyper-local commerce; supports self-employed immigrant families.
 
 ---
@@ -233,18 +233,18 @@ Grandparents in India or visiting the US struggle to connect deeply with America
 * **Core Functionality**:
   * **Bidirectional Cultural Translation Engine**:
     * When teen texts slang: *"Grandpa, I'm lowkey stressed for the SAT, but gonna grind tonight fr."*
-    * AI translates into warm, respectful Telugu with context notes: *"తాతగారు, నేను పరీక్ష గురించి కొద్దిగా ఆందోళనగా ఉన్నాను, కానీ ఈ రాత్రి బాగా కష్టపడి చదువుతాను. (గమనిక: Kiran చదువుపై దృష్టి పెడుతున్నాడు)."*
-    * When elder replies with Telugu idioms/blessings: *"నాయనా, శ్రద్ధావాన్ లభతే జ్ఞానమ్. నీ శ్రమ వృథా పోదు. నిశ్చింతగా ఉండు."*
+    * AI translates into warm, respectful English with context notes: *"తాతగారు, నేను పరీక్ష గురించి కొద్దిగా ఆందోళనగా ఉన్నాను, కానీ ఈ రాత్రి బాగా కష్టపడి చదువుతాను. (గమనిక: Kiran చదువుపై దృష్టి పెడుతున్నాడు)."*
+    * When elder replies with English idioms/blessings: *"నాయనా, శ్రద్ధావాన్ లభతే జ్ఞానమ్. నీ శ్రమ వృథా పోదు. నిశ్చింతగా ఉండు."*
     * AI translates into English with emotional context: *"My dear boy, wisdom comes to those who are dedicated. Your hard work will never go to waste. Have peace of mind. (Grandpa is sending his deepest blessings and encouragement)."*
-  * **Voice Note Transcription & Translation**: Elder records Telugu voice note $\rightarrow$ translated to English text/audio for grandchild.
+  * **Voice Note Transcription & Translation**: Elder records English voice note $\rightarrow$ translated to English text/audio for grandchild.
 * **Measurable Impact**: Preserves cross-generational affection; prevents communication breakdown in diaspora families.
 
 ---
 
-### Tool 7B: Shared Bilingual Family Calendar & Chore Board
+### Tool 7B: Shared Clinical Family Calendar & Chore Board
 * **Target Persona**: Multi-generational household (Grandparents, Parents, Kids living together).
 * **Core Functionality**:
-  * Shared dashboard where chores and family events appear in both English and Telugu side-by-side.
+  * Shared dashboard where chores and family events appear in both English and English side-by-side.
   * Large-font, high-contrast interface designed for elder readability.
   * Visual task cards: *"Doctor Appointment for Tatagaru at 2:00 PM" / "తాతగారి డాక్టర్ అపాయింట్‌మెంట్"*.
 * **Measurable Impact**: Eliminates scheduling confusion in joint households; gives elders active participation in daily family life.
@@ -254,16 +254,16 @@ Grandparents in India or visiting the US struggle to connect deeply with America
 ## Track 8: Stories and Traditions
 
 ### Problem Context
-Oral histories, grandmother folklore, family migration memories, and traditional culinary recipes are lost when elders pass away because younger generations cannot read Telugu script.
+Oral histories, grandmother folklore, family migration memories, and traditional culinary recipes are lost when elders pass away because younger generations cannot read complex jargon.
 
 ---
 
 ### Tool 8A: Voice Memory & Oral Folklore Keeper ("Katha")
 * **Target Persona**: **Ammamma Subbalakshmi (70)**, sharing childhood memories of village festivals and life lessons.
 * **Core Functionality**:
-  * **1-Tap Voice Recording**: Elder presses a large mic button and speaks a 1-minute story in Telugu.
+  * **1-Tap Voice Recording**: Elder presses a large mic button and speaks a 1-minute story in English.
   * **Gemini Audio-to-Story Engine**:
-    1. Transcribes native Telugu speech accurately.
+    1. Transcribes native English speech accurately.
     2. Translates into lyrical, engaging English storybook prose for younger readers.
     3. Extracts **Cultural Glossary Items** (e.g. *Sankranti, Muggulu, Haridasu*).
     4. Auto-generates a vibrant storybook illustration prompt and formatted PDF card.
@@ -278,7 +278,7 @@ Oral histories, grandmother folklore, family migration memories, and traditional
   * User records conversational spoken instructions: *"ఒక కప్పు నూనె వేసి, ఆవాలు చిటపటలాడాక, నాలుగు ఎండుమిర్చి వేయాలి..."*
   * AI parses conversational speech into a **Standardized Illustrated Recipe Card**:
     * Measured Ingredients List with US grocery equivalents.
-    * Step-by-Step cooking instructions in English & Telugu.
+    * Step-by-Step cooking instructions in English & English.
     * **"Secret Grandmother Tips" (రహస్య చిట్కాలు)**: Highlights key traditional techniques.
 * **Measurable Impact**: Prevents cultural culinary extinction across diaspora generations.
 

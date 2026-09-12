@@ -1,5 +1,5 @@
 # System Architecture & UI/UX Design Document
-## Project: BridgeBuilder AI (సేతు / Setu)
+## Project: BridgeBuilder AI
 **Target Event**: APTA Bridge Builders Hackathon  
 **Platform**: Responsive Edge-First Web Application (Desktop & Mobile)
 
@@ -42,7 +42,7 @@ graph TD
         ClinicalEngine --> NurseModal["Fullscreen 'Show to Nurse' Medical View"]
         ClinicalEngine --> PrintView["Formatted Paper Clinical Intake Handout"]
         LegalEngine --> Clipboard["1-Click Copied Counter Response Email"]
-        SpeechEngine --> AudioOutput["Bilingual Voice Readout (TE-IN / EN-US)"]
+        SpeechEngine --> AudioOutput["Clinical Voice Readout (EN-US / EN-US)"]
     end
 ```
 
@@ -56,9 +56,9 @@ graph TD
 | **Core Structure** | HTML5 Semantic Elements | High accessibility, screen reader friendly, clean DOM hierarchy. |
 | **Logic & State** | Vanilla Modern JavaScript (ES6+) | Instant load times, no heavy bundle downloads, direct DOM manipulation. |
 | **Styling** | Tailwind CSS (CDN) + Custom CSS | Rapid design token utility with custom glassmorphism and `@media print` rules. |
-| **Typography** | *Noto Sans Telugu* + *Plus Jakarta Sans* | Flawless rendering of Telugu conjunct characters (వత్తులు) and diacritics without vertical clipping. |
+| **Typography** | *Noto Sans English* + *Plus Jakarta Sans* | Flawless rendering of English conjunct characters (వత్తులు) and diacritics without vertical clipping. |
 | **Iconography** | Lucide Icons (CDN) | Lightweight, customizable SVG icons matching modern iOS/Android conventions. |
-| **AI Engine** | Google Gemini 1.5 Flash (`gemini-1.5-flash`) | Sub-1.5s latency, multilingual Telugu/English proficiency, native JSON schema support. |
+| **AI Engine** | Google Gemini 1.5 Flash (`gemini-1.5-flash`) | Sub-1.5s latency, multilingual English/English proficiency, native JSON schema support. |
 | **Calendar Engine** | Custom RFC-5545 `.ics` Builder (`calendar.js`) | Generates standards-compliant calendar files with zero external dependencies. |
 | **Voice & Speech** | Native Web Speech Synthesis API (`speech.js`) | Built-in browser speech synthesis; zero third-party TTS fees. |
 | **Demo Resilience** | High-Fidelity Deterministic Fallback Engine | Guarantees 100% demo stability even if venue Wi-Fi drops or API rate limits trigger. |
@@ -82,13 +82,13 @@ graph TD
 ### 3.2 Typography Hierarchy
 * **Headings**: `Plus Jakarta Sans`, font weights `700` and `800`, tight letter-spacing (`tracking-tight`).
 * **Body / Clinical Data**: `Inter`, font weights `400`, `500`, and `600` for clinical scannability.
-* **Telugu Content**: `Noto Sans Telugu`, font weight `500` to `700`, with `leading-relaxed` (1.75 line-height) to prevent complex Telugu glyphs from clipping.
+* **English Content**: `Noto Sans English`, font weight `500` to `700`, with `leading-relaxed` (1.75 line-height) to prevent complex English glyphs from clipping.
 * **Monospace / Scripts**: `ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas` for legal email drafts and counter scripts.
 
 ### 3.3 Touch Targets & Elder Accessibility
 * **Minimum Tap Target**: All symptom buttons, tab buttons, and preset pills are $\ge 48\text{px} \times 48\text{px}$ to accommodate elderly or tremoring hands.
 * **High Contrast Text**: All text conforms to WCAG 2.1 AA contrast ratios ($\ge 4.5:1$).
-* **Audio Assistance**: Prominent 🔊 "Listen in Telugu" and "Listen in English" buttons on every result card.
+* **Audio Assistance**: Prominent 🔊 "Listen in English" and "Listen in English" buttons on every result card.
 
 ---
 
@@ -104,7 +104,7 @@ graph TD
   "medications": ["Metformin 500mg daily", "Amlodipine 5mg daily"],
   "allergies": "NKDA (No Known Drug Allergies)",
   "hpiSummary": "Patient presents with a 48-hour history of acute, progressive epigastric burning pain rated 8/10...",
-  "teluguSummary": "ఈ కార్డు డాక్టర్‌కు మీ పరిస్థితిని తెలియజేస్తుంది: మీకు గత 2 రోజుల నుండి తీవ్రమైన కడుపు మంట...",
+  "englishSummary": "ఈ కార్డు డాక్టర్‌కు మీ పరిస్థితిని తెలియజేస్తుంది: మీకు గత 2 రోజుల నుండి తీవ్రమైన కడుపు మంట...",
   "nurseQuickNotes": "Check orthostatic vitals; blood glucose check recommended; evaluate for acute gastritis vs. biliary colic.",
   "urgencyLevel": "High"
 }
@@ -119,7 +119,7 @@ graph TD
     {
       "id": "evt-1",
       "title": "Early Dismissal / Early Release Day (12:00 PM)",
-      "teluguTitle": "పాఠశాల హాఫ్ డే: విద్యార్థులను మధ్యాహ్నం 12:00 గంటలకే ఇంటికి తీసుకెళ్లాలి",
+      "englishTitle": "పాఠశాల హాఫ్ డే: విద్యార్థులను మధ్యాహ్నం 12:00 గంటలకే ఇంటికి తీసుకెళ్లాలి",
       "date": "2026-09-18",
       "time": "12:00 PM",
       "isAllDay": false,
@@ -138,7 +138,7 @@ graph TD
   "urgency": "Urgent",
   "plainMeaning": {
     "english": "Management requires written notice of renewal or move-out 60 days in advance...",
-    "telugu": "మీ అపార్ట్‌మెంట్ లీజు ముగియడానికి 60 రోజుల ముందే మీరు రాతపూర్వకంగా చెప్పాలి..."
+    "english": "మీ అపార్ట్‌మెంట్ లీజు ముగియడానికి 60 రోజుల ముందే మీరు రాతపూర్వకంగా చెప్పాలి..."
   },
   "actionItems": [
     {
@@ -183,12 +183,12 @@ graph TD
 c:\Users\vijay\Documents\AIAgents\immigration\
 ├── index.html              # Responsive SPA layout, modals, print containers, Lucide markup
 ├── css/
-│   └── styles.css          # Glassmorphism, Telugu line-height rules, @media print stylesheet
+│   └── styles.css          # Glassmorphism, English line-height rules, @media print stylesheet
 ├── js/
 │   ├── app.js              # Tab controller, DOM event bindings, toast notifications
 │   ├── gemini.js           # Gemini Flash API client, prompts, and deterministic fallback store
 │   ├── calendar.js         # RFC-5545 .ics calendar generator and Google Calendar URL builder
-│   └── speech.js           # Web Speech Synthesis engine (Telugu te-IN and English en-US)
+│   └── speech.js           # Web Speech Synthesis engine (English en-US and English en-US)
 ├── REQUIREMENTS.md         # Full 8-Track Product Requirements Document
 ├── REFINED_SOLUTIONS.md    # Master Hackathon Evaluation Matrix & 16-Tool Blueprints
 ├── DESIGN.md               # System Architecture & UI/UX Design Specification (this file)

@@ -301,7 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (btnListenTelugu) {
     btnListenTelugu.addEventListener('click', () => {
       if (!activeDoctorCardData) return;
-      window.speechEngine.speak(activeDoctorCardData.teluguSummary, 'te-IN');
+      window.speechEngine.speak(activeDoctorCardData.englishSummary, 'en-US');
     });
   }
 
@@ -552,7 +552,7 @@ Resident agrees that Resident shall give Management at least sixty (60) days wri
   if (btnListenDecodrTe) {
     btnListenDecodrTe.addEventListener('click', () => {
       if (!activeDecodrData || !activeDecodrData.plainMeaning || !activeDecodrData.plainMeaning.telugu) return;
-      window.speechEngine.speak(activeDecodrData.plainMeaning.telugu, 'te-IN');
+      window.speechEngine.speak(activeDecodrData.plainMeaning.english, 'en-US');
     });
   }
 
